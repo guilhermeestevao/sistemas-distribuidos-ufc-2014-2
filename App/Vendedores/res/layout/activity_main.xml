@@ -5,33 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Exemplo Exemplo Facebook SDK Login" />
-
-    <!-- Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login com Facebook"
-        android:onClick="loginFace" />
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:visibility="gone"
-        android:onClick="logoutFace" / -->
         
     <com.facebook.widget.LoginButton
         android:id="@+id/fbLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center" />
-    
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
@@ -48,6 +28,14 @@
         android:layout_marginTop="10dp"
         android:gravity="center" />
     
+    <com.facebook.widget.ProfilePictureView
+        android:id="@+id/fbImg"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        />
+    
     <TextView
         android:id="@+id/id"
         android:layout_width="wrap_content"
@@ -56,12 +44,4 @@
         android:layout_marginTop="10dp"
         android:gravity="center" />
     
-    <com.facebook.widget.ProfilePictureView
-        android:id="@+id/fbImg"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center_horizontal"
-        />
-
 </LinearLayout>
