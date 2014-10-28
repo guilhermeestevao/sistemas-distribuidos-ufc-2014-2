@@ -127,13 +127,13 @@ public class MainActivity extends Activity {
 				public void onCompleted(GraphUser user, Response response) {
 					if(user != null){
 						TextView tv = (TextView) findViewById(R.id.name);
-						tv.setText(user.getFirstName()+" "+user.getLastName());
+						tv.setText("Seja bem vindo " + user.getFirstName()+" "+user.getLastName());
 
 						tv = (TextView) findViewById(R.id.email);
-						tv.setText(user.getProperty("email").toString());
+						tv.setText("Email facebook: " + user.getProperty("email").toString());
 
 						tv = (TextView) findViewById(R.id.id);
-						tv.setText(user.getId());
+						tv.setText("Id facebook: " + user.getId());
 
 						ProfilePictureView ppv = (ProfilePictureView) findViewById(R.id.fbImg);
 						ppv.setProfileId(user.getId());
