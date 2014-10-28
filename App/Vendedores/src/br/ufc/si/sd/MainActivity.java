@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
 
 		case R.id.cadastra_produto:
 			Intent it1 = new Intent(MainActivity.this, CadastraProdutoActivity.class);
+			it1.putExtra("usuario", usuario);
 			startActivity(it1);
 			break;
 
