@@ -3,6 +3,7 @@ package br.ufc.si.sd.rest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.util.Log;
 import br.ufc.si.sd.Produto;
 import br.ufc.si.sd.util.WebServiceCliente;
 
@@ -20,6 +21,7 @@ public class ProdutoREST {
 			jo.put("preco", produto.getPreco());
 			jo.put("usuario", produto.getUsuario());
 			String produtoJson = jo.toString();
+			Log.i("-------", produtoJson);
 			String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", produtoJson);
 			return respostaServidor[1];
 		} catch (JSONException e) {
