@@ -1,15 +1,6 @@
 package br.ufc.si.sd;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Arrays;
-
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -19,7 +10,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 import br.ufc.si.sd.rest.UsuarioREST;
 
 import com.facebook.Request;
@@ -156,7 +146,18 @@ public class MainActivity extends Activity {
 						ProfilePictureView ppv = (ProfilePictureView) findViewById(R.id.fbImg);
 						ppv.setProfileId(user.getId());
 
-
+						final UsuarioREST rest = new UsuarioREST();
+						new Thread(){
+							public void run() {
+								try {
+									String resposta = rest.cadastrarUsario(usuario);						
+								} catch (Exception e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+							};
+						}.start();
+						
 						usuario.setId(Long.parseLong(user.getId()));
 						usuario.setNome(user.getFirstName()+" "+user.getLastName());
 						usuario.setEmail(user.getProperty("email").toString());
