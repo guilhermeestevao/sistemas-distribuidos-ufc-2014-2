@@ -4,5 +4,7 @@
         android:title="Ver vendedores"/>
     <item android:id="@+id/cadastra_produto"
         android:title="Cadastrar Produto"/>
+    <item android:id="@+id/lista_produto"
+        android:title="Listar Produtos"/>
 
 </menu>

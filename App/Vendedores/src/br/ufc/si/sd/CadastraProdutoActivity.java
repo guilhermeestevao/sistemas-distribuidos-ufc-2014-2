@@ -44,12 +44,15 @@ public class CadastraProdutoActivity extends Activity {
 									Double.parseDouble(editPrecoProduto.getText().toString()),
 									usuario);
 							String resposta = rest.cadastrarProduto(produto);
+							
+							Intent it = new Intent(CadastraProdutoActivity.this, ListaProdutosActivity.class);
+							startActivity(it);
+							
 						} catch (Exception e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
-				};
+				}.start();
 			}
 		});
 

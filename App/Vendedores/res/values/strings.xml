@@ -6,5 +6,6 @@
     <string name="facebook_app_id">528573113946038</string>
     <string name="title_activity_cadastra_produto">CadastraProdutoActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_lista_produtos">ListaProdutosActivity</string>
 
 </resources>

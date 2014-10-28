@@ -56,6 +56,12 @@ public class MainActivity extends Activity {
 			startActivity(it1);
 			break;
 
+		case R.id.lista_produto:
+			Intent it2 = new Intent(MainActivity.this, ListaProdutosActivity.class);
+			it2.putExtra("usuario", usuario);
+			startActivity(it2);
+			break;
+			
 		default:
 			break;
 		}
