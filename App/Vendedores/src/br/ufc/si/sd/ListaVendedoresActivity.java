@@ -62,28 +62,6 @@ public class ListaVendedoresActivity extends ListActivity{
 			}
 		}
 
-		private List<Usuario> getUsuarios(String json) {
-			List<Usuario> usuarios = new ArrayList<Usuario>();
-			try{
-				JSONObject Jasonobject = new JSONObject(json);
-				JSONArray Jarray = Jasonobject.getJSONArray("usuario");
-				JSONObject usuario;
-				
-				for (int i = 0; i < Jarray.length(); i++) {
-					usuario = new JSONObject(Jarray.getString(i));
-					Usuario usuarioAux = new Usuario();
-					usuarioAux.setId(Long.parseLong(usuario.getString("id")));
-					usuarioAux.setNome(usuario.getString("nome"));
-					usuarioAux.setEmail(usuario.getString("email"));
-					usuarios.add(usuarioAux);
-				}
-				return usuarios;
-			}catch(JSONException e){
-				Log.i(this.getClass().getSimpleName(), e.getMessage());
-			}
-			return usuarios;
-		}
-
 		@Override
 		protected void onPostExecute(List<Usuario> result) {
 			// TODO Auto-generated method stub
@@ -96,17 +74,6 @@ public class ListaVendedoresActivity extends ListActivity{
 				AlertDialog.Builder builder = new AlertDialog.Builder(ListaVendedoresActivity.this).setTitle("Atenção") .setMessage("Não foi possivel acessar essas informções...") .setPositiveButton("OK", null); 
 				builder.create().show();
 			}
-		}
-		
-		private String toString(InputStream is) throws IOException {
-			// TODO Auto-generated method stub
-			byte[] bytes = new byte[1024];
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			int lidos;
-			while ((lidos = is.read(bytes)) > 0) {
-				baos.write(bytes, 0, lidos); 
-			} 
-			return new String(baos.toByteArray());
 		}
 	}
 }
