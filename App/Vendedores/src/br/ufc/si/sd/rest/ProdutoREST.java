@@ -21,7 +21,6 @@ public class ProdutoREST {
 			jo.put("preco", produto.getPreco());
 			jo.put("usuario", produto.getUsuario());
 			String produtoJson = jo.toString();
-			Log.i("-------", produtoJson);
 			String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", produtoJson);
 			return respostaServidor[1];
 		} catch (JSONException e) {
