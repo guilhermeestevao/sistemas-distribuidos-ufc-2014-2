@@ -1,5 +1,6 @@
 package ufc.sd.resource;
 
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -11,9 +12,13 @@ import ufc.sd.modelo.Produto;
 @Path("/produto")
 public class ProdutoResource {
 	
+	
+	
+	
 	@POST
 	@Path("/novo")
-	@Produces("application/json")
+	@Produces("text/plain")
+	@Consumes("application/json")
 	public String cadastrarItem(Produto item){
 		return new ProdutoController().cadastrarItem(item);
 	}

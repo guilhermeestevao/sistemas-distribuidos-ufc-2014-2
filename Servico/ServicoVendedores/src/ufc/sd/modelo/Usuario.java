@@ -9,12 +9,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 
 @Entity
 @Table(name="usuarios")
 @XmlRootElement
+//@XmlAccessorType(value=XmlAccessType.FIELD)
 public class Usuario implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -22,7 +26,10 @@ public class Usuario implements Serializable{
 	private long id;
 	private String nome;
 	private String email;
+	
+	
 	@OneToMany(mappedBy="usuario")
+	//@XmlTransient
 	private List<Produto> itens;
 	
 	public Usuario() {
@@ -59,6 +66,7 @@ public class Usuario implements Serializable{
 		this.email = email;
 	}
 	
+	
 	public List<Produto> getItens() {
 		return itens;
 	}
@@ -66,7 +74,7 @@ public class Usuario implements Serializable{
 	public void setItens(List<Produto> itens) {
 		this.itens = itens;
 	}
-
+	
 	@Override
 	public String toString() {
 		return nome;

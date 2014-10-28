@@ -10,7 +10,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.hibernate.annotations.ManyToAny;
 
@@ -18,21 +21,21 @@ import org.hibernate.annotations.ManyToAny;
 @Entity
 @Table(name="itens")
 @XmlRootElement
+@XmlAccessorType(value=XmlAccessType.FIELD)
 public class Produto implements Serializable {
 
-	
+	private static final long serialVersionUID = 2L;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
-	
-	
 	private String nome;
 	private String descricao;
 	private int quantidade;
 	private double preco;
 	@OneToOne
 	@JoinColumn(name="usuarioid")
+	@XmlTransient
 	private Usuario usuario;
 	public Produto() {
 	}
