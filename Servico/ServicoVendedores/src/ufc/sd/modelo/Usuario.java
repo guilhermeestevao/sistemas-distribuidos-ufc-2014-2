@@ -1,11 +1,16 @@
 package ufc.sd.modelo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
 
 @Entity
 @Table(name="usuarios")
@@ -17,6 +22,8 @@ public class Usuario implements Serializable{
 	private long id;
 	private String nome;
 	private String email;
+	@OneToMany(mappedBy="usuario")
+	private List<Produto> itens;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
@@ -27,7 +34,10 @@ public class Usuario implements Serializable{
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.itens = new ArrayList<Produto>();
 	}
+	
+	
 
 	public long getId() {
 		return id;
@@ -47,6 +57,14 @@ public class Usuario implements Serializable{
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public List<Produto> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Produto> itens) {
+		this.itens = itens;
 	}
 
 	@Override
