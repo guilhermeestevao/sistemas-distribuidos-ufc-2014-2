@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item android:id="@+id/listar_vendedores"
         android:title="Ver vendedores"/>
-    <item android:id="@+id/cadastro"
-        android:title="Cadastrar"/>
+    <item android:id="@+id/cadastra_produto"
+        android:title="Cadastrar Produto"/>
 
 </menu>

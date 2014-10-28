@@ -50,18 +50,10 @@ public class MainActivity extends Activity {
 			startActivity(it);
 			break;
 
-		case R.id.cadastro:
-			final UsuarioREST rest = new UsuarioREST();
-			new Thread(){
-				public void run() {
-					try {
-						String resposta = rest.cadastrarUsario(usuario);						
-					} catch (Exception e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				};
-			}.start();
+		case R.id.cadastra_produto:
+			Intent it1 = new Intent(MainActivity.this, CadastraProdutoActivity.class);
+			startActivity(it1);
+			break;
 
 		default:
 			break;
