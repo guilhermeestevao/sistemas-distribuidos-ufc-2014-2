@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Vendedores</string>
+    <string name="hello_world">Hello world!</string>
+	<string name="facebook_app_id">528573113946038</string>
+</resources>
