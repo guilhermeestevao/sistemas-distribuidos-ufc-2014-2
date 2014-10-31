@@ -20,9 +20,8 @@ public class UsuarioController {
 		dao.commit();
 		return "Usuário cadastrado com sucesso!";
 		}catch(Exception e){
+			
 			return e.getMessage();
-		}finally{
-			dao.close();
 		}
 	}
 }
