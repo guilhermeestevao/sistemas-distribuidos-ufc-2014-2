@@ -29,7 +29,7 @@ public class UsuarioResource {
 		boolean status = new UsuarioController().verificaUsuario(id);
 		return String.valueOf(status);
 	}
-	
+
 	@POST
 	@Path("/novo")
 	@Produces("text/plain")
@@ -37,5 +37,4 @@ public class UsuarioResource {
 	public String cadastrar(Usuario usuario){
 		return new UsuarioController().cadastrarUsuario(usuario);
 	}
-	
 }
