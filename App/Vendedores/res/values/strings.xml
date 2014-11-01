@@ -8,5 +8,6 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_lista_produtos">ListaProdutosActivity</string>
     <string name="produtos_por_vendedor">Produtos</string>
+    <string name="title_activity_lista_produtos_por_vendedor">ListaProdutosPorVendedor</string>
 
 </resources>

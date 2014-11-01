@@ -25,13 +25,10 @@
             android:layout_height="100dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="19dp"
+            android:layout_marginTop="30dp"
             android:background="@drawable/shape"
-            android:gravity="left">
-           
-            
-        </com.facebook.widget.ProfilePictureView>    
-        
+            android:gravity="left" />
+
         <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
@@ -40,8 +37,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:gravity="center"
+            android:text=""
             android:textColor="#ffffff"
-            android:text="teste 1 2 3"
             android:textSize="20sp" />
     </RelativeLayout>
 
@@ -54,8 +51,7 @@
     <TextView
         android:id="@+id/text_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
         android:gravity="center"
         android:text="EMAIL FACEBOOK"
         android:textColor="#6980b6"
@@ -68,15 +64,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="teste"
+        android:text=""
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/text_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="50dp"
         android:gravity="center"
+        android:layout_marginTop="20dp"
         android:text="ID FACEBOOK"
         android:textColor="#6980b6"
         android:textSize="20sp"
@@ -88,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="center"
-        android:text="teste"
+        android:text=""
         android:textSize="20sp" />
 
 </LinearLayout>

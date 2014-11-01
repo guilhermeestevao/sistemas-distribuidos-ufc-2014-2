@@ -10,10 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import br.ufc.si.sd.rest.UsuarioREST;
-import br.ufc.si.sd.util.WebServiceCliente;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -59,7 +57,7 @@ public class MainActivity extends Activity {
 			break;
 
 		case R.id.lista_produto:
-			Intent it2 = new Intent(MainActivity.this, ListaProdutosVendedor.class);
+			Intent it2 = new Intent(MainActivity.this, ListaProdutosPorVendedor.class);
 			it2.putExtra("usuario", usuario);
 			startActivity(it2);
 			break;

@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.si.sd.rest.ProdutoREST;
-import br.ufc.si.sd.rest.UsuarioREST;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
@@ -11,7 +10,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -63,7 +61,7 @@ public class ListaProdutosVendedor extends ListActivity{
 				adapter = new ArrayAdapter<Produto>(ListaProdutosVendedor.this, android.R.layout.simple_list_item_1, result);
 				setListAdapter(adapter);
 			}else{
-				AlertDialog.Builder builder = new AlertDialog.Builder(ListaProdutosVendedor.this).setTitle("Atenção") .setMessage("Não foi possivel acessar essas informções...") .setPositiveButton("OK", null); 
+				AlertDialog.Builder builder = new AlertDialog.Builder(ListaProdutosVendedor.this).setTitle("Atencao") .setMessage("Não foi possivel acessar essas informções...") .setPositiveButton("OK", null); 
 				builder.create().show();
 			}
 		}

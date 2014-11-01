@@ -46,7 +46,7 @@ public class CadastraProdutoActivity extends Activity {
 							
 							String resposta = rest.cadastrarProduto(produto);
 					
-							Intent it = new Intent(CadastraProdutoActivity.this, ListaProdutosVendedor.class);
+							Intent it = new Intent(CadastraProdutoActivity.this, ListaProdutosPorVendedor.class);
 							it.putExtra("usuario", usuario);
 							startActivity(it);
 							
