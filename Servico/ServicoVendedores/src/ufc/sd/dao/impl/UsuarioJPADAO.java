@@ -10,5 +10,20 @@ public class UsuarioJPADAO extends GenericJPADAO<Usuario> implements UsuarioDAO{
 		super();
 		this.persistentClass = Usuario.class;
 	}
+
+	@Override
+	public boolean verificaUsuario(long id) {
+		try{
+			Usuario usuario = em.find(Usuario.class, id);
+			
+			if(usuario != null)
+				return true;
+		}catch(Exception e){
+			return false;
+		}
+		
+		return false;
+	}
+
 	
 }

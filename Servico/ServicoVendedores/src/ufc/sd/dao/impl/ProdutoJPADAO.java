@@ -14,7 +14,7 @@ public class ProdutoJPADAO extends GenericJPADAO<Produto> implements ProdutoDAO 
 	@Override
 	public List<Produto> listarProdutosPorUsuario(long idUsuario) {
 		try{
-			Query query = em.createQuery("select p from Produto p where p.usuario.id=?1");
+			Query query = em.createQuery("select p from Produto p where p.usuarioId=?1");
 			query.setParameter(1, idUsuario);
 			List<Produto> produtos = query.getResultList();
 			return produtos;

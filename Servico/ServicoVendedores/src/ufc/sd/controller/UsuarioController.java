@@ -24,5 +24,12 @@ public class UsuarioController {
 			return e.getMessage();
 		}
 	}
+	
+	public boolean verificaUsuario(long id){
+		UsuarioDAO dao = new UsuarioJPADAO();
+		boolean status = dao.verificaUsuario(id);
+		return status;
+	}
+	
 }
 	

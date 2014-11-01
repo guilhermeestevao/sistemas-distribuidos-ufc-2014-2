@@ -20,7 +20,7 @@ public class ProdutoResource {
 	@Path("/novo")
 	@Produces("text/plain")
 	@Consumes("application/json")
-	public String cadastrarProduto(Produto produto){
+	public String cadastrarProduto(Produto produto){	
 		return new ProdutoController().cadastrarProduto(produto);
 	}
 	
