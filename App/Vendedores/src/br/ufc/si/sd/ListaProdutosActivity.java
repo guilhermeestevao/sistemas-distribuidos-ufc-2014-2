@@ -55,7 +55,7 @@ public class ListaProdutosActivity extends ListActivity {
 				ArrayAdapter<Produto> adapter = new ArrayAdapter<Produto>(ListaProdutosActivity.this, android.R.layout.simple_list_item_1, result);
 				setListAdapter(adapter);
 			}else{
-				AlertDialog.Builder builder = new AlertDialog.Builder(ListaProdutosActivity.this).setTitle("Atenção") .setMessage("Não foi possivel acessar essas informções...") .setPositiveButton("OK", null); 
+				AlertDialog.Builder builder = new AlertDialog.Builder(ListaProdutosActivity.this).setTitle("Atencao") .setMessage("Não foi possivel acessar essas informções...") .setPositiveButton("OK", null); 
 				builder.create().show();
 			}
 		}

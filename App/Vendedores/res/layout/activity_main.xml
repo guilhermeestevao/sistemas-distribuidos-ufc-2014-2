@@ -4,46 +4,91 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#eeeeee"
     android:orientation="vertical" >
-        
+
     <com.facebook.widget.LoginButton
         android:id="@+id/fbLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center" />
 
-    <com.facebook.widget.ProfilePictureView
-        android:id="@+id/fbImg"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:gravity="center_horizontal" >
-    </com.facebook.widget.ProfilePictureView>
-
-    <TextView
-        android:id="@+id/name"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:background="#6980b6"
+        android:paddingBottom="30dp" >
+
+        <com.facebook.widget.ProfilePictureView
+            android:id="@+id/fbImg"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/shape"
+            android:gravity="left">
+           
+            
+        </com.facebook.widget.ProfilePictureView>    
+        
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fbImg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
+            android:text="teste 1 2 3"
+            android:textSize="20sp" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/firstDivider"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#cccccc" />
+
+    <TextView
+        android:id="@+id/text_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="EMAIL FACEBOOK"
+        android:textColor="#6980b6"
         android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:gravity="center" />
-    
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:gravity="center" />
-    
+        android:gravity="center"
+        android:text="teste"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/text_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="ID FACEBOOK"
+        android:textColor="#6980b6"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
     <TextView
         android:id="@+id/id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="20sp"
         android:layout_marginTop="10dp"
-        android:gravity="center" />
-    
+        android:gravity="center"
+        android:text="teste"
+        android:textSize="20sp" />
+
 </LinearLayout>

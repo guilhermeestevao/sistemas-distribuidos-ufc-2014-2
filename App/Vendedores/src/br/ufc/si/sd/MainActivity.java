@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import br.ufc.si.sd.rest.UsuarioREST;
 import br.ufc.si.sd.util.WebServiceCliente;
@@ -134,18 +135,19 @@ public class MainActivity extends Activity {
 				@Override
 				public void onCompleted(GraphUser user, Response response) {
 					if(user != null){
+						
 						TextView tv = (TextView) findViewById(R.id.name);
 						tv.setText("Seja bem vindo " + user.getFirstName()+" "+user.getLastName());
 
 						tv = (TextView) findViewById(R.id.email);
-						tv.setText("Email facebook: " + user.getProperty("email").toString());
+						tv.setText(user.getProperty("email").toString());
 
 						tv = (TextView) findViewById(R.id.id);
-						tv.setText("Id facebook: " + user.getId());
+						tv.setText(user.getId());
 
 						ProfilePictureView ppv = (ProfilePictureView) findViewById(R.id.fbImg);
 						ppv.setProfileId(user.getId());
-
+						
 						usuario.setId(Long.parseLong(user.getId()));
 						usuario.setNome(user.getFirstName()+" "+user.getLastName());
 						usuario.setEmail(user.getProperty("email").toString());
