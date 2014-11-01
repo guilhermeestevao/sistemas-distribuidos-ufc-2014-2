@@ -53,6 +53,29 @@ public class ProdutoREST {
 		return resposta[1];
 	}
 	
+	public String atualizarProduto(Produto produto){
+		JSONObject jo = new JSONObject();
+		try {
+			jo.put("id", produto.getId());
+			jo.put("nome", produto.getNome());
+			jo.put("descricao", produto.getDescricao());
+			jo.put("quantidade", produto.getQuantidade());
+			jo.put("preco", produto.getPreco());
+			jo.put("usuarioId", produto.getUsuarioId());
+			String produtoJson = jo.toString();
+			Log.i("produto json", produtoJson);
+			String[] respostaServidor = new WebServiceCliente().put(URL_WS+"atualizar", produtoJson);
+			return respostaServidor[1];
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "";
+	}
+	
+	
+	
 	
 	private List<Produto> getProdutos(String json) {
 		
@@ -99,5 +122,6 @@ public class ProdutoREST {
 			return produtos;
 		}
 	}
+	
 	
 }
