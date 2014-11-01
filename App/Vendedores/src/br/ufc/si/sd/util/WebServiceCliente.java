@@ -7,8 +7,10 @@ import java.net.URI;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 
 import android.util.Log;
@@ -41,6 +43,7 @@ public class WebServiceCliente {
 	}
 
 	public final String[] post(String url, String json) {
+		
 		String[] result = new String[2];
 		try {
 
@@ -68,8 +71,61 @@ public class WebServiceCliente {
 		return result;
 	}
 
-	private String toString(InputStream is) throws IOException {
+	public final String[] delete(String url) {
 
+		String[] result = new String[2];
+		HttpDelete httpDelete = new HttpDelete(url);
+		HttpResponse response;
+
+		try {
+			response = HttpClientSingleton.getHttpClientInstace().execute(httpDelete);
+			HttpEntity entity = response.getEntity();
+
+			if (entity != null) {
+				result[0] = String.valueOf(response.getStatusLine().getStatusCode());
+				InputStream instream = entity.getContent();
+				result[1] = toString(instream);
+				instream.close();
+				Log.i("delete", "Result from post JsonPost : " + result[0] + " : " + result[1]);
+			}
+		} catch (Exception e) {
+			Log.e("NGVL", "Falha ao acessar Web service", e);
+			result[0] = "0";
+			result[1] = "Falha de rede!";
+		}
+		return result;
+	}
+
+	public final String[] put(String url, String json) {
+
+		String[] result = new String[2];
+		try {
+
+			HttpPut httpPut = new HttpPut(new URI(url));
+			httpPut.setHeader("Content-type", "application/json");
+			StringEntity sEntity = new StringEntity(json, "UTF-8");
+			httpPut.setEntity(sEntity);
+			HttpResponse response;
+			response = HttpClientSingleton.getHttpClientInstace().execute(httpPut);
+			HttpEntity entity = response.getEntity();
+
+			if (entity != null) {
+				result[0] = String.valueOf(response.getStatusLine().getStatusCode());
+				InputStream instream = entity.getContent();
+				result[1] = toString(instream);
+				instream.close();
+				Log.d("put", "Result from post JsonPost : " + result[0] + " : " + result[1]);
+			}
+
+		} catch (Exception e) {
+			Log.e("NGVL", "Falha ao acessar Web service", e);
+			result[0] = "0";
+			result[1] = "Falha de rede!";
+		}
+		return result;
+	}
+
+	private String toString(InputStream is) throws IOException {
 		byte[] bytes = new byte[1024];
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		int lidos;
@@ -78,5 +134,4 @@ public class WebServiceCliente {
 		}
 		return new String(baos.toByteArray());
 	}
-
 }

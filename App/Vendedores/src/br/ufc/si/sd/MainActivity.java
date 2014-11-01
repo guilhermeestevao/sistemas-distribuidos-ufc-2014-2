@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 import br.ufc.si.sd.rest.UsuarioREST;
+import br.ufc.si.sd.util.WebServiceCliente;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -21,10 +23,9 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.ProfilePictureView;
 
-
 public class MainActivity extends Activity {
 	private UiLifecycleHelper uiHelper;
-	Usuario usuario = new Usuario();
+	private Usuario usuario = new Usuario();
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 		@Override
 		public void call(Session session, SessionState state, Exception exception) {
@@ -57,7 +58,7 @@ public class MainActivity extends Activity {
 			break;
 
 		case R.id.lista_produto:
-			Intent it2 = new Intent(MainActivity.this, ListaProdutosActivity.class);
+			Intent it2 = new Intent(MainActivity.this, ListaProdutosVendedor.class);
 			it2.putExtra("usuario", usuario);
 			startActivity(it2);
 			break;
@@ -145,23 +146,12 @@ public class MainActivity extends Activity {
 						ProfilePictureView ppv = (ProfilePictureView) findViewById(R.id.fbImg);
 						ppv.setProfileId(user.getId());
 
-						final UsuarioREST rest = new UsuarioREST();
-						new Thread(){
-							public void run() {
-								try {
-									String resposta = rest.cadastrarUsario(usuario);						
-								} catch (Exception e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							};
-						}.start();
-						
 						usuario.setId(Long.parseLong(user.getId()));
 						usuario.setNome(user.getFirstName()+" "+user.getLastName());
 						usuario.setEmail(user.getProperty("email").toString());
 
-
+						new VerificaUsuarioAsyncTask().execute(usuario);
+						
 					}
 				}
 			}).executeAsync();
@@ -171,4 +161,31 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	class VerificaUsuarioAsyncTask extends AsyncTask<Usuario, Void, String>{
+
+		@Override
+		protected String doInBackground(Usuario... params) {
+			Usuario usuario = params[0];
+			Log.i("-----", usuario.getId()+"");
+			UsuarioREST rest =new UsuarioREST();
+			boolean status = rest.verificarUsuario(usuario.getId());
+			Log.i("-----", status+"");
+			if(status == false){
+				try {
+					String resposta = rest.cadastrarUsario(usuario);
+					return resposta;
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			return "";
+				
+		}
+		
+		
+		
+	}
+	
+	
 }

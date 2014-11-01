@@ -26,18 +26,35 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class ListaVendedoresActivity extends ListActivity{
 
+	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		new DownloadJsonAsyncTask().execute("http://192.168.0.107:8080/ServicoVendedores/usuario/listar-todos");
+		new DownloadJsonAsyncTask().execute();
 		
 	}
 	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// TODO Auto-generated method stub
+		super.onListItemClick(l, v, position, id);
+		Usuario usuario = usuarios.get(position);
+		Toast.makeText(this, usuario.getNome(), Toast.LENGTH_SHORT).show();
+		
+		Intent it = new Intent(this, ListaProdutosActivity.class);
+		it.putExtra("usuario", usuario);
+		startActivity(it);
+		
+	}
 		
 	class DownloadJsonAsyncTask extends AsyncTask<String, Void, List<Usuario>>{
 
@@ -54,7 +71,7 @@ public class ListaVendedoresActivity extends ListActivity{
 		@Override
 		protected List<Usuario> doInBackground(String... params) {
 			// TODO Auto-generated method stub
-			List<Usuario> usuarios = new UsuarioREST().listarUsuarios();
+			usuarios = new UsuarioREST().listarUsuarios();
 			if(usuarios != null){
 				return usuarios;
 			}else{
