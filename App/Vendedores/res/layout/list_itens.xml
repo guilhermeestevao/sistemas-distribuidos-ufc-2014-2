@@ -32,11 +32,13 @@
         android:orientation="horizontal" >
 
         <Button
+            android:id="@+id/btn_editar_lista"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:text="Editar" />
 
         <Button
+            android:id="@+id/btn_excluir_lista"
             android:layout_width="158dp"
             android:layout_height="wrap_content"
             android:text="Excluir" />
