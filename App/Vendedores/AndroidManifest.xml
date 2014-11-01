@@ -38,6 +38,9 @@
             android:name=".CadastraProdutoActivity"
             android:label="@string/title_activity_cadastra_produto" >
         </activity>
+        <activity 
+            android:name=".ListaProdutosActivity" />
+    	<activity android:name=".ListaProdutosVendedor" />
     </application>
 
 </manifest>
