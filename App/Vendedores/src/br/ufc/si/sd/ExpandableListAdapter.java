@@ -2,25 +2,20 @@ package br.ufc.si.sd;
 
 import java.util.List;
 
-import br.ufc.si.sd.ListaProdutosVendedor.DeletaProdutoAsyncTask;
 import br.ufc.si.sd.rest.ProdutoREST;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.sax.StartElementListener;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 

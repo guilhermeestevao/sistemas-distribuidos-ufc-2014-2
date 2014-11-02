@@ -2,8 +2,6 @@ package br.ufc.si.sd;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import br.ufc.si.sd.ListaProdutosVendedor.DeletaProdutoAsyncTask;
 import br.ufc.si.sd.rest.ProdutoREST;
 
 import android.app.Activity;
@@ -28,8 +26,6 @@ public class ListaProdutosPorVendedor extends Activity {
 		Intent it = getIntent();
 		usuario = (Usuario) it.getExtras().get("usuario");
 		new DownloadJsonAsyncTask().execute();
-
-		listView = (ExpandableListView) findViewById(R.id.listView);
 		
 	}
 

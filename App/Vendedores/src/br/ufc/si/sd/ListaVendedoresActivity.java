@@ -50,7 +50,7 @@ public class ListaVendedoresActivity extends ListActivity{
 		Usuario usuario = usuarios.get(position);
 		Toast.makeText(this, usuario.getNome(), Toast.LENGTH_SHORT).show();
 		
-		Intent it = new Intent(this, ListaProdutosActivity.class);
+		Intent it = new Intent(this, ListaProdutosDoVendedorIndividual.class);
 		it.putExtra("usuario", usuario);
 		startActivity(it);
 		
