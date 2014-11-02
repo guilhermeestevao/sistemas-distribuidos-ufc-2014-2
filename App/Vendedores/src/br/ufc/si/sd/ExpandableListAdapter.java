@@ -4,11 +4,12 @@ import java.util.List;
 
 import br.ufc.si.sd.ListaProdutosVendedor.DeletaProdutoAsyncTask;
 import br.ufc.si.sd.rest.ProdutoREST;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.sax.StartElementListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,6 +102,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			}
 		});
 		
+		
+		
+		Button btnEditar = (Button) convertView.findViewById(R.id.btn_editar_lista);
+		btnEditar.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Produto produto = produtos.get(groupPosition);
+				Intent it = new Intent(activity, EditaProdutoActivity.class);
+				it.putExtra("produto", produto);
+				activity.startActivity(it);
+			}
+		});
 		
 		return convertView;
 		

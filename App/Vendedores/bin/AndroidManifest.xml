@@ -46,5 +46,7 @@
             android:label="@string/title_activity_lista_produtos_por_vendedor" 
             android:screenOrientation="portrait" android:configChanges="orientation" >
         </activity>
+        <activity android:name=".EditaProdutoActivity" 
+            android:screenOrientation="portrait" android:configChanges="orientation"/>
     </application>
 </manifest>

@@ -1,12 +1,11 @@
 package br.ufc.si.sd;
 
 import br.ufc.si.sd.rest.ProdutoREST;
+import android.R.id;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -24,10 +23,7 @@ public class CadastraProdutoActivity extends Activity {
 		final EditText editDescricaoProduto = (EditText) findViewById(R.id.edit_descricao_produto);
 		final EditText editPrecoProduto = (EditText) findViewById(R.id.edit_preco_produto);
 		final EditText editQtdProduto = (EditText) findViewById(R.id.edit_qtd_produto);
-
 		final ProdutoREST rest = new ProdutoREST();
-		
-
 		Button btnCadastrarProduto = (Button) findViewById(R.id.btn_cadastrar_produto);
 		btnCadastrarProduto.setOnClickListener(new OnClickListener() {
 
@@ -37,19 +33,19 @@ public class CadastraProdutoActivity extends Activity {
 					@Override
 					public void run() {
 						try {
-							final Produto produto = new Produto();
-							produto.setNome(editNomeProduto.getText().toString());
-							produto.setDescricao(editDescricaoProduto.getText().toString());
-							produto.setPreco(Double.parseDouble(editPrecoProduto.getText().toString()));
-							produto.setQuantidade(Integer.parseInt(editQtdProduto.getText().toString()));
-							produto.setUsuarioId(usuario.getId());
-							
+
+							String nome = editNomeProduto.getText().toString();
+							String descricao = editDescricaoProduto.getText().toString();
+							double preco = Double.parseDouble(editPrecoProduto.getText().toString());
+							int quantidade = Integer.parseInt(editQtdProduto.getText().toString());
+							long idUsuario = usuario.getId();
+
+							Produto produto = new Produto(nome, descricao, quantidade, preco, idUsuario);
 							String resposta = rest.cadastrarProduto(produto);
-					
 							Intent it = new Intent(CadastraProdutoActivity.this, ListaProdutosPorVendedor.class);
 							it.putExtra("usuario", usuario);
 							startActivity(it);
-							
+
 						} catch (Exception e) {
 							e.printStackTrace();
 						}

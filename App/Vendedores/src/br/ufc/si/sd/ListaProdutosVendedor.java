@@ -28,15 +28,6 @@ public class ListaProdutosVendedor extends ListActivity{
 		new DownloadJsonAsyncTask().execute();
 	}
 	
-	@Override
-	protected void onListItemClick(ListView l, View v, int position, long id) {
-		// TODO Auto-generated method stub
-		super.onListItemClick(l, v, position, id);
-		Produto produto = produtos.get(position);
-		new DeletaProdutoAsyncTask().execute(produto);
-		
-	}
-	
 	class DownloadJsonAsyncTask extends AsyncTask<String, Void, List<Produto>>{
 		ProgressDialog dialog;
 		@Override
