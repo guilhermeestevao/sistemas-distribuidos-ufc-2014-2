@@ -24,7 +24,7 @@ public class CompraController {
 			
 			cdao.commit();
 			pdao.commit();
-			return "Compra Cadastrada com sucesso";
+			return "Compra Cadastrada com sucesso  no valor de R$: " + compra.getValorVenda();
 		} catch (Exception e) {
 			return "---" + e.getMessage();
 		}finally{
