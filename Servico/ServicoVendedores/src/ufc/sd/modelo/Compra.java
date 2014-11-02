@@ -19,7 +19,7 @@ public class Compra {
 	private long idCOmprador;
 	private long idProduto;
 	private double valorVenda;
-	private double quantidadeProduto;
+	private int quantidadeProduto;
 	
 	public long getIdVendedor() {
 		return idVendedor;
@@ -45,10 +45,10 @@ public class Compra {
 	public void setValorVenda(double valorVenda) {
 		this.valorVenda = valorVenda;
 	}
-	public double getQuantidadeProduto() {
+	public int getQuantidadeProduto() {
 		return quantidadeProduto;
 	}
-	public void setQuantidadeProduto(double quantidadeProduto) {
+	public void setQuantidadeProduto(int quantidadeProduto) {
 		this.quantidadeProduto = quantidadeProduto;
 	}
 	@Override

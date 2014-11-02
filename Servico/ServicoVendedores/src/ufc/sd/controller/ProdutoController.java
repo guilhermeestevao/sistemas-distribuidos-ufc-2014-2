@@ -9,6 +9,7 @@ public class ProdutoController {
 
 	public String cadastrarProduto(Produto produto){
 		ProdutoDAO dao = new ProdutoJPADAO();
+		
 		try{
 			dao.beginTransaction();
 			dao.save(produto);
