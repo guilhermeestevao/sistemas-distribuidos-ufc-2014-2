@@ -1,7 +1,10 @@
-package br.ufc.si.sd;
+package br.ufc.si.sd.adapter;
 
 import java.util.List;
 
+import br.ufc.si.sd.R;
+import br.ufc.si.sd.activities.EditaProdutoActivity;
+import br.ufc.si.sd.entidades.Produto;
 import br.ufc.si.sd.rest.ProdutoREST;
 import android.app.Activity;
 import android.app.AlertDialog;

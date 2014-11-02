@@ -2,14 +2,12 @@ package br.ufc.si.sd.rest;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.util.Log;
-import br.ufc.si.sd.Produto;
-import br.ufc.si.sd.Usuario;
+import br.ufc.si.sd.entidades.Produto;
+import br.ufc.si.sd.entidades.Usuario;
 import br.ufc.si.sd.util.WebServiceCliente;
 
 public class ProdutoREST {

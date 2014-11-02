@@ -2,19 +2,11 @@ package br.ufc.si.sd.rest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarOutputStream;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.google.gson.Gson;
-
-import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
-import br.ufc.si.sd.Produto;
-import br.ufc.si.sd.Usuario;
+import br.ufc.si.sd.entidades.Usuario;
 import br.ufc.si.sd.util.WebServiceCliente;
 
 public class UsuarioREST {

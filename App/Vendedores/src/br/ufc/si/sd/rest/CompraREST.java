@@ -2,8 +2,7 @@ package br.ufc.si.sd.rest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import br.ufc.si.sd.Compra;
+import br.ufc.si.sd.entidades.Compra;
 import br.ufc.si.sd.util.WebServiceCliente;
 
 public class CompraREST {

@@ -1,4 +1,4 @@
-package br.ufc.si.sd;
+package br.ufc.si.sd.activities;
 
 import java.util.Arrays;
 
@@ -11,6 +11,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import br.ufc.si.sd.R;
+import br.ufc.si.sd.entidades.Usuario;
+import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
+import br.ufc.si.sd.lists.ListaVendedoresActivity;
 import br.ufc.si.sd.rest.UsuarioREST;
 
 import com.facebook.Request;
@@ -182,8 +186,6 @@ public class MainActivity extends Activity {
 			return "";
 				
 		}
-		
-		
 		
 	}
 	

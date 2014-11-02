@@ -1,17 +1,16 @@
-package br.ufc.si.sd;
+package br.ufc.si.sd.lists;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import br.ufc.si.sd.entidades.Produto;
+import br.ufc.si.sd.entidades.Usuario;
 import br.ufc.si.sd.rest.ProdutoREST;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 
 public class ListaProdutosActivity extends ListActivity {

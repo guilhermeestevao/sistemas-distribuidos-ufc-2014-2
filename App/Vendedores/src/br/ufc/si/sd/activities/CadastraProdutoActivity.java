@@ -1,5 +1,9 @@
-package br.ufc.si.sd;
+package br.ufc.si.sd.activities;
 
+import br.ufc.si.sd.R;
+import br.ufc.si.sd.entidades.Produto;
+import br.ufc.si.sd.entidades.Usuario;
+import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
 import br.ufc.si.sd.rest.ProdutoREST;
 import android.R.id;
 import android.app.Activity;

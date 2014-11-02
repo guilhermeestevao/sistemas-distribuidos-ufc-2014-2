@@ -1,4 +1,4 @@
-package br.ufc.si.sd;
+package br.ufc.si.sd.entidades;
 
 import java.io.Serializable;
 
