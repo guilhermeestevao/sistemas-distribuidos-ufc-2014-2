@@ -4,8 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@Table(name="compras")
+@XmlRootElement
 public class Compra {
 	
 	@Id
@@ -16,6 +20,7 @@ public class Compra {
 	private long idProduto;
 	private double valorVenda;
 	private double quantidadeProduto;
+	
 	public long getIdVendedor() {
 		return idVendedor;
 	}
