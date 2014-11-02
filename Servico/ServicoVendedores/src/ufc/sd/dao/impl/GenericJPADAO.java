@@ -26,6 +26,10 @@ public abstract class GenericJPADAO<T> implements GenericDAO<T> {
 		em.remove(entity);
 	}
 
+	public void update(T entity){
+		em.merge(entity);
+	}
+	
 	public T find(Object id) {
 		return em.find(persistentClass, id);
 	}
@@ -35,6 +39,7 @@ public abstract class GenericJPADAO<T> implements GenericDAO<T> {
 		cq.from(persistentClass);
 		return em.createQuery(cq).getResultList();
 	}
+	
 	public List<T> find(String query) {
 		Query q = em.createNamedQuery(query);
 		return q.getResultList();
@@ -56,5 +61,4 @@ public abstract class GenericJPADAO<T> implements GenericDAO<T> {
 	public void close() {
 		JPAUtil.closeEntityManager();
 	}
-	
 }

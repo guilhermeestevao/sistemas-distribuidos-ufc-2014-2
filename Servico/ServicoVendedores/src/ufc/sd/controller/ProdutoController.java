@@ -41,4 +41,18 @@ public class ProdutoController {
 		}
 	}
 
+	public String atualizarProduto(Produto produto){
+		ProdutoDAO dao = new ProdutoJPADAO();
+		try{
+			dao.beginTransaction();
+			dao.update(produto);
+			dao.commit();
+			return "Produto atualizado";
+		}catch(Exception e){
+			return e.getMessage();
+		}finally{
+
+		}
+	}
+	
 }
