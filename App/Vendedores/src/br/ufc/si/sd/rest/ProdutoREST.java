@@ -14,7 +14,7 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class ProdutoREST {
 
-	private static final String URL_WS = "http://192.168.0.118:8080/ServicoVendedores/produtos/";
+	private static final String URL_WS = "http://192.168.0.123:8181/ServicoVendedores/produtos/";
 
 	public String cadastrarProduto(Produto produto){
 		JSONObject jo = new JSONObject();
@@ -26,7 +26,6 @@ public class ProdutoREST {
 			jo.put("preco", produto.getPreco());
 			jo.put("usuarioId", produto.getUsuarioId());
 			String produtoJson = jo.toString();
-			Log.i("produto json", produtoJson);
 			String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", produtoJson);
 			return respostaServidor[1];
 		} catch (JSONException e) {

@@ -19,7 +19,7 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class UsuarioREST {
 
-	private static final String URL_WS = "http://192.168.0.118:8080/ServicoVendedores/usuario/";
+	private static final String URL_WS = "http://192.168.0.123:8181/ServicoVendedores/usuario/";
 
 	public String cadastrarUsario(Usuario usuario) throws Exception{
 		JSONObject jo = new JSONObject();

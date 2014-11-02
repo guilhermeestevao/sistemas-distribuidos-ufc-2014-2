@@ -2,26 +2,37 @@ package br.ufc.si.sd;
 
 import java.util.List;
 
+import br.ufc.si.sd.rest.CompraREST;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.sax.StartElementListener;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListAdapter{
 
 	private List<Produto> produtos;
 	private LayoutInflater inflater;
 	private Activity activity;
-	
+
 	public ExpandableListAdapterVendedorIndividual(List<Produto> produtos, Activity activity) {
 		this.produtos = produtos;
 		this.activity = activity;
 		this.inflater = activity.getLayoutInflater();
 	}
-	
+
 	@Override
 	public int getGroupCount() {
 		return produtos.size();
@@ -65,27 +76,104 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 		Produto group = (Produto) getGroup(groupPosition);
 		((CheckedTextView) convertView).setText(group.getNome());
 		((CheckedTextView) convertView).setChecked(isExpanded);
-		
+
 		return convertView;
 	}
 
 	@Override
 	public View getChildView(int groupPosition, int childPosition,
 			boolean isLastChild, View convertView, ViewGroup parent) {
-		final Produto children = (Produto) getChild(groupPosition, childPosition);
+		final Produto produto = (Produto) getChild(groupPosition, childPosition);
 		if(convertView == null)
 			convertView = inflater.inflate(R.layout.list_itens_produtos_vendedor_individual, null);
 		TextView t1 = (TextView) convertView.findViewById(R.id.tv_descricao_produto_vendedor_individual);
-		t1.setText("Descricao: "+children.getDescricao());
+		t1.setText("Descricao: "+produto.getDescricao());
 		TextView t2 = (TextView) convertView.findViewById(R.id.tv_preco_produto_vendedor_individual);
-		t2.setText("Preco: "+String.valueOf(children.getPreco()));
-		
+		t2.setText("Preco: "+String.valueOf(produto.getPreco()));
+
+		Button btnComprar = (Button) convertView.findViewById(R.id.comprar);
+		btnComprar.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if(produto.getQuantidade()>0){
+
+					AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+					final NumberPicker picker = new NumberPicker(activity);
+
+					picker.setMaxValue(produto.getQuantidade());
+					picker.setMinValue(1);
+					builder.setView(picker);
+					builder.setTitle("Determine a quantidade");
+					builder.setCancelable(false);
+					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							final Usuario usuario = (Usuario) activity.getIntent().getExtras().get("usuario");
+							int quantidade = picker.getValue();
+							double valor = quantidade*produto.getPreco();
+							final Compra compra = new Compra();
+							compra.setIdComprador(usuario.getId());
+							compra.setIdProduto(produto.getId());
+							compra.setQuantidadeProduto(quantidade);
+							compra.setIdVendedor(produto.getUsuarioId());
+							compra.setValorVenda(valor);
+
+							new RealizarCompraAsyncTask().execute(compra);
+
+						}
+					});
+					builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							// User cancelled the dialog
+						}
+					});
+					builder.show();
+
+				}else{
+					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Não esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
+					builder.create().show();
+				}
+			}
+
+		});
+
+
 		return convertView;
 	}
 
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return false;
+	}
+
+	class RealizarCompraAsyncTask extends AsyncTask<Compra, Void, String>{
+
+		ProgressDialog dialog;
+
+		@Override
+		protected void onPreExecute() {
+			super.onPreExecute();
+			dialog = ProgressDialog.show(activity, "Aguarde", "Buscando produtos...");
+		}
+
+		@Override
+		protected String doInBackground(Compra... params) {
+			Compra compra = params[0];
+			String resposta = new CompraREST().realizarCompra(compra);
+			return resposta;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			dialog.dismiss();
+			AlertDialog.Builder builder = new AlertDialog.Builder(
+					activity).setTitle("Atenção").setMessage(result)
+					.setPositiveButton("OK", null);
+			builder.create().show();
+		}
+
 	}
 
 }

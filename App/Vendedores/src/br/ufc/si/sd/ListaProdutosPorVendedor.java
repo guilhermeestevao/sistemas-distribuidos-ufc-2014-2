@@ -61,7 +61,7 @@ public class ListaProdutosPorVendedor extends Activity {
 			} else {
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						ListaProdutosPorVendedor.this)
-						.setTitle("Atencao")
+						.setTitle("Atenção")
 						.setMessage(
 								"Não foi possivel acessar essas informções...")
 						.setPositiveButton("OK", null);
