@@ -44,7 +44,7 @@ public class EditaProdutoActivity extends Activity{
 				new Thread(){
 					public void run() {
 						String resposta = new ProdutoREST().atualizarProduto(produtoEdit);
-						Intent it2 = new Intent(EditaProdutoActivity.this, ListaProdutosVendedor.class);
+						Intent it2 = new Intent(EditaProdutoActivity.this, ListaProdutosPorVendedor.class);
 						Usuario usuario = new Usuario();
 						usuario.setId(produto.getUsuarioId());
 						it2.putExtra("usuario", usuario);
