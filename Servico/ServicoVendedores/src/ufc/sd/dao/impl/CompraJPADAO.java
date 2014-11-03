@@ -15,10 +15,10 @@ public class CompraJPADAO extends GenericJPADAO<Compra> implements CompraDAO {
 	}
 	
 	@Override
-	public List<Compra> listarComprasDoVendedor(long idComprador){
+	public List<Compra> listarComprasDoUsuario(long idUsuario){
 		try {
 			Query query = em.createQuery("select c from Compra c where c.idComprador=?1");
-			query.setParameter(1, idComprador);
+			query.setParameter(1, idUsuario);
 			List<Compra> compras = query.getResultList();
 			return compras;
 		} catch (Exception e) {
@@ -27,10 +27,10 @@ public class CompraJPADAO extends GenericJPADAO<Compra> implements CompraDAO {
 	}
 	
 	@Override
-	public List<Compra> listarVendasDoVendedor(long idVendedor){
+	public List<Compra> listarVendasDoUsuario(long idUsuario){
 		try {
 			Query query = em.createQuery("select c from Compra c where c.idVendedor=?1");
-			query.setParameter(1, idVendedor);
+			query.setParameter(1, idUsuario);
 			List<Compra> vendasVendedor = query.getResultList();
 			return vendasVendedor;
 		} catch (Exception e) {
