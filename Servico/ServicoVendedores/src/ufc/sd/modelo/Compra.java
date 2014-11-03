@@ -16,7 +16,7 @@ public class Compra {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
 	private long idVendedor;
-	private long idCOmprador;
+	private long idComprador;
 	private long idProduto;
 	private double valorVenda;
 	private int quantidadeProduto;
@@ -28,10 +28,10 @@ public class Compra {
 		this.idVendedor = idVendedor;
 	}
 	public long getIdCOmprador() {
-		return idCOmprador;
+		return idComprador;
 	}
-	public void setIdCOmprador(long idCOmprador) {
-		this.idCOmprador = idCOmprador;
+	public void setIdComprador(long idComprador) {
+		this.idComprador = idComprador;
 	}
 	public long getIdProduto() {
 		return idProduto;
@@ -55,7 +55,7 @@ public class Compra {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (idCOmprador ^ (idCOmprador >>> 32));
+		result = prime * result + (int) (idComprador ^ (idComprador >>> 32));
 		result = prime * result + (int) (idProduto ^ (idProduto >>> 32));
 		result = prime * result + (int) (idVendedor ^ (idVendedor >>> 32));
 		long temp;
@@ -74,7 +74,7 @@ public class Compra {
 		if (getClass() != obj.getClass())
 			return false;
 		Compra other = (Compra) obj;
-		if (idCOmprador != other.idCOmprador)
+		if (idComprador != other.idComprador)
 			return false;
 		if (idProduto != other.idProduto)
 			return false;
@@ -90,8 +90,8 @@ public class Compra {
 	}
 	@Override
 	public String toString() {
-		return "Compra [idVendedor=" + idVendedor + ", idCOmprador="
-				+ idCOmprador + ", idProduto=" + idProduto + ", valorVenda="
+		return "Compra [idVendedor=" + idVendedor + ", idComprador="
+				+ idComprador + ", idProduto=" + idProduto + ", valorVenda="
 				+ valorVenda + ", quantidadeProduto=" + quantidadeProduto + "]";
 	}
 	

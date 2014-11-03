@@ -1,6 +1,8 @@
 package ufc.sd.controller;
 
 
+import java.util.List;
+
 import ufc.sd.dao.CompraDAO;
 import ufc.sd.dao.ProdutoDAO;
 import ufc.sd.dao.impl.CompraJPADAO;
@@ -31,6 +33,16 @@ public class CompraController {
 			
 		}
 			
+	}
+	
+	public List<Compra> listarComprasDoVendedor(long idComprador){
+		CompraDAO cdao = new CompraJPADAO();
+		return cdao.listarComprasDoVendedor(idComprador);
+	}
+	
+	public List<Compra> listarVendasDoVendedor(long idVendedor){
+		CompraDAO cdao = new CompraJPADAO();
+		return cdao.listarVendasDoVendedor(idVendedor);
 	}
 	
 }
