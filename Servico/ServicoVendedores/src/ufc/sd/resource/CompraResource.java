@@ -24,16 +24,16 @@ public class CompraResource {
 	}
 	
 	@GET
-	@Path("/compras-vendedor/{idComprador}")
+	@Path("/compras-usuario/{idUsuario}")
 	@Produces("application/json")
-	public List<Compra> listarComprasDoVendedor(@PathParam("idComprador") long idComprador){
-		return new CompraController().listarComprasDoVendedor(idComprador);
+	public List<Compra> listarComprasDoUsuario(@PathParam("idUsuario") long idUsuario){
+		return new CompraController().listarComprasDoUsuario(idUsuario);
 	}
 	
 	@GET
-	@Path("/vendas-vendedor/{idVendedor}")
+	@Path("/vendas-usuario/{idUsuario}")
 	@Produces("application/json")
-	public List<Compra> listarVendasDoVendedor(@PathParam("idVendedor") long idVendedor){
-		return new CompraController().listarVendasDoVendedor(idVendedor);
+	public List<Compra> listarVendasDoUsuario(@PathParam("idUsuario") long idUsuario){
+		return new CompraController().listarVendasDoUsuario(idUsuario);
 	} 
 }
