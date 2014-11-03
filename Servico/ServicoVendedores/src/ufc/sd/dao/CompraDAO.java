@@ -5,6 +5,6 @@ import java.util.List;
 import ufc.sd.modelo.Compra;
 
 public interface CompraDAO extends GenericDAO<Compra> {
-	public List<Compra> listarComprasDoVendedor(long idComprador);
-	public List<Compra> listarVendasDoVendedor(long idVendedor);
+	public List<Compra> listarComprasDoUsuario(long idUsuario);
+	public List<Compra> listarVendasDoUsuario(long idUsuario);
 }
