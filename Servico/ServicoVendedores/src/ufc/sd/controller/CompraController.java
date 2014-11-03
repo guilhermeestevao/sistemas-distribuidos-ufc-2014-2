@@ -25,10 +25,10 @@ public class CompraController {
 			cdao.save(compra);
 			
 			cdao.commit();
-			pdao.commit();
+			
 			return "Compra Cadastrada com sucesso  no valor de R$: " + compra.getValorVenda();
 		} catch (Exception e) {
-			return "---" + e.getMessage();
+			return  e.getMessage();
 		}finally{
 			
 		}
