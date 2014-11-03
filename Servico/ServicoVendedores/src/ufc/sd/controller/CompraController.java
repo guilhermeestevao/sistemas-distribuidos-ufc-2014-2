@@ -35,14 +35,14 @@ public class CompraController {
 			
 	}
 	
-	public List<Compra> listarComprasDoVendedor(long idComprador){
+	public List<Compra> listarComprasDoUsuario(long idUsuario){
 		CompraDAO cdao = new CompraJPADAO();
-		return cdao.listarComprasDoVendedor(idComprador);
+		return cdao.listarComprasDoUsuario(idUsuario);
 	}
 	
-	public List<Compra> listarVendasDoVendedor(long idVendedor){
+	public List<Compra> listarVendasDoUsuario(long idUsuario){
 		CompraDAO cdao = new CompraJPADAO();
-		return cdao.listarVendasDoVendedor(idVendedor);
+		return cdao.listarVendasDoUsuario(idUsuario);
 	}
 	
 }
