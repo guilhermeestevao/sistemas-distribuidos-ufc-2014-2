@@ -72,6 +72,7 @@ public class ProdutoREST {
 	
 	public Produto getProdutoById(long id){
 		String[] json = new WebServiceCliente().get(URL_WS+"item/"+id);
+	
 		JSONObject produto1;
 		try {
 			produto1 = new JSONObject(json[1]);
