@@ -1,6 +1,7 @@
 package ufc.sd.controller;
 
 
+import java.util.Date;
 import java.util.List;
 
 import ufc.sd.dao.CompraDAO;
@@ -12,7 +13,7 @@ import ufc.sd.modelo.Produto;
 
 public class CompraController {
 	public String cadastrarCompra(Compra compra){
-		
+		compra.setData(new Date());
 		CompraDAO cdao = new CompraJPADAO();
 		ProdutoDAO pdao =  new ProdutoJPADAO();
 		Produto produto =pdao.find(compra.getIdProduto());
