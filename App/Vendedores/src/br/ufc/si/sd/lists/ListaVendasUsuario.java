@@ -6,11 +6,14 @@ import br.ufc.si.sd.entidades.Compra;
 import br.ufc.si.sd.entidades.Usuario;
 import br.ufc.si.sd.rest.CompraREST;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class ListaVendasUsuario extends ListActivity{
 
@@ -20,6 +23,23 @@ public class ListaVendasUsuario extends ListActivity{
 		super.onCreate(savedInstanceState);
 		Usuario usuario = (Usuario) getIntent().getExtras().get("usuario");
 		new DownloadJasonVendasAsyncTask().execute(usuario);
+	}
+	
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		AlertDialog.Builder builder = new AlertDialog.Builder(ListaVendasUsuario.this);
+		builder.setMessage("Produto comprado"+
+					"\n\n"+"Descrição do produto"+
+					"\n\n"+"Quantidade comprada"+
+					"\n\n"+"Preço do produto"+
+					"\n\n"+"Comprador do produto");
+		builder.setPositiveButton("OK", null);
+		
+		final Dialog dialog = builder.create();
+		dialog.setTitle("Compra do Usuário");
+		
+		dialog.show();
 	}
 	
 	class DownloadJasonVendasAsyncTask extends AsyncTask<Usuario, Void, List<Compra>>{
