@@ -24,7 +24,7 @@ public class UsuarioREST {
 	}
 
 	public boolean verificarUsuario(long id){
-		String[] respostaServidor = new WebServiceCliente().get(URL_WS+id);
+		String[] respostaServidor = new WebServiceCliente().get(URL_WS+"verificar/"+id);
 		if(respostaServidor[0].equals("200"))
 			return Boolean.parseBoolean(respostaServidor[1]);
 		 
