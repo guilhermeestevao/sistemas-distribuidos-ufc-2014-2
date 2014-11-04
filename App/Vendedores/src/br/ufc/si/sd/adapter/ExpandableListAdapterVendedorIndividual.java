@@ -178,11 +178,20 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 			AlertDialog.Builder builder = new AlertDialog.Builder(
 					activity).setTitle("Atenção").setMessage(result)
 					.setPositiveButton("OK", null);
+			
+			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					
+					Intent it = new Intent(activity, ListaProdutosDoVendedorIndividual.class);
+					it.putExtra("usuario", usuario);
+					activity.startActivity(it);
+				}
+			}); 
+			
 			builder.create().show();
 			
-			Intent it = new Intent(activity, ListaProdutosDoVendedorIndividual.class);
-			it.putExtra("usuario", usuario);
-			activity.startActivity(it);
 			//11223344566778
 		}
 
