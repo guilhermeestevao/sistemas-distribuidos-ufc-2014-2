@@ -12,7 +12,7 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class ProdutoREST {
 
-	private static final String URL_WS = "http://192.168.0.118:8080/ServicoVendedores/produtos/";
+	private static final String URL_WS = "http://10.0.103.97:8080/ServicoVendedores/produtos/";
 
 	public String cadastrarProduto(Produto produto){
 		JSONObject jo = new JSONObject();
@@ -70,7 +70,25 @@ public class ProdutoREST {
 		return "";
 	}
 	
-	
+	public Produto getProdutoById(long id){
+		String[] json = new WebServiceCliente().get(URL_WS+"item/"+id);
+		JSONObject produto1;
+		try {
+			produto1 = new JSONObject(json[1]);
+			Produto produtoAux = new Produto();
+			JSONObject produto = produto1.getJSONObject("produto");
+			produtoAux.setNome(produto.getString("nome"));
+			produtoAux.setId(Long.parseLong(produto.getString("id")));
+			produtoAux.setDescricao(produto.getString("descricao"));
+			produtoAux.setPreco(Double.parseDouble(produto.getString("preco")));
+			produtoAux.setQuantidade(Integer.parseInt(produto.getString("quantidade")));
+			produtoAux.setUsuarioId(Long.parseLong(produto.getString("usuarioId")));
+			return produtoAux;
+		} catch (JSONException e) {
+			Log.i(this.getClass().getSimpleName(), e.getMessage());
+		}
+		return null;
+	}
 	
 	
 	private List<Produto> getProdutos(String json) {
