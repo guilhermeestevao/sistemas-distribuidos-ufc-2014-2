@@ -23,13 +23,21 @@ public class UsuarioResource {
 	}
 	
 	@GET
-	@Path("{idUsuario}")
+	@Path("/verificar/{idUsuario}")
 	@Produces("text/plain")
 	public String verificaUsuario(@PathParam("idUsuario") long id){
 		boolean status = new UsuarioController().verificaUsuario(id);
 		return String.valueOf(status);
 	}
 
+	@GET
+	@Path("/{idUsuario}")
+	@Produces("application/json")
+	public Usuario getUsuario(@PathParam("idUsuario") long idUsuario){
+		return new UsuarioController().getUsuario(idUsuario);
+	}
+	
+	
 	@POST
 	@Path("/novo")
 	@Produces("text/plain")

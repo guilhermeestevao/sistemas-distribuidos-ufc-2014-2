@@ -32,6 +32,13 @@ public class ProdutoResource {
 		return new ProdutoController().listarProdutosPorUsuario(idUsuario);
 	}
 	
+	@GET
+	@Path("/item/{idProduto}")
+	@Produces("application/json")
+	public Produto getProduto(@PathParam("idProduto") long idProduto){
+		return new ProdutoController().getProduto(idProduto);
+	}
+	
 	@DELETE
 	@Path("/deletar/{idProduto}")
 	@Produces("text/plain")

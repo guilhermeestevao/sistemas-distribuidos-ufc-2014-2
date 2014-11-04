@@ -31,5 +31,9 @@ public class UsuarioController {
 		return status;
 	}
 	
+	public Usuario getUsuario(long idUsuario){
+		return new UsuarioJPADAO().find(idUsuario);
+	}
+	
 }
 	
