@@ -56,4 +56,7 @@ public class ProdutoController {
 		}
 	}
 	
+	public Produto getProduto(long idProduto){
+		return new ProdutoJPADAO().find(idProduto);
+	}
 }
