@@ -183,7 +183,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 			Intent it = new Intent(activity, ListaProdutosDoVendedorIndividual.class);
 			it.putExtra("usuario", usuario);
 			activity.startActivity(it);
-			
+			//11223344566778
 		}
 
 	}
