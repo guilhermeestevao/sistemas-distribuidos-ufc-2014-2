@@ -1,5 +1,6 @@
 package ufc.sd.modelo;
 
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +21,7 @@ public class Compra {
 	private long idProduto;
 	private double valorVenda;
 	private int quantidadeProduto;
-	
-	
+	private Date data;
 	
 	public long getId() {
 		return id;
@@ -60,10 +60,11 @@ public class Compra {
 	public void setIdVendedor(long idVendedor) {
 		this.idVendedor = idVendedor;
 	}
-	
-	
-	
-	
-	
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
 	
 }

@@ -1,5 +1,6 @@
 package ufc.sd.resource;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
