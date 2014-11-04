@@ -6,5 +6,8 @@
         android:title="Cadastrar Produto"/>
     <item android:id="@+id/lista_produto"
         android:title="Listar Produtos"/>
-
+	<item android:id="@+id/lista_compras"
+        android:title="Minhas compras"/>
+	<item android:id="@+id/lista_vendas"
+        android:title="Minhas vendas"/> 
 </menu>
