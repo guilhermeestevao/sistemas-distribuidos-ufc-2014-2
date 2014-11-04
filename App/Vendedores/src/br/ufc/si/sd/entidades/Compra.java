@@ -1,5 +1,8 @@
 package br.ufc.si.sd.entidades;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Compra {
 
 	private long id;
@@ -8,6 +11,7 @@ public class Compra {
 	private long idProduto;
 	private double valorVenda;
 	private int quantidadeProduto;
+	private Date data;
 	
 	public long getId() {
 		return id;
@@ -44,6 +48,18 @@ public class Compra {
 	}
 	public void setQuantidadeProduto(int quantidadeProduto) {
 		this.quantidadeProduto = quantidadeProduto;
+	}
+	public Date getData() {
+		return data;
+	}
+	public void setData(Date data) {
+		this.data = data;
+	}
+	
+	@Override
+	public String toString() {
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy - hh:mm");
+		return formato.format(data);
 	}
 	
 }

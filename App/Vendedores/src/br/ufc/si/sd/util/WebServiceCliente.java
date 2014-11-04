@@ -86,7 +86,7 @@ public class WebServiceCliente {
 				InputStream instream = entity.getContent();
 				result[1] = toString(instream);
 				instream.close();
-				Log.i("delete", "Result from post JsonPost : " + result[0] + " : " + result[1]);
+				Log.i("delete", "Result from delete JsonPost : " + result[0] + " : " + result[1]);
 			}
 		} catch (Exception e) {
 			Log.e("NGVL", "Falha ao acessar Web service", e);
@@ -114,7 +114,7 @@ public class WebServiceCliente {
 				InputStream instream = entity.getContent();
 				result[1] = toString(instream);
 				instream.close();
-				Log.d("put", "Result from post JsonPost : " + result[0] + " : " + result[1]);
+				Log.d("put", "Result from put JsonPost : " + result[0] + " : " + result[1]);
 			}
 
 		} catch (Exception e) {

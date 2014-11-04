@@ -32,12 +32,9 @@ public class ListaVendedoresActivity extends ListActivity{
 		// TODO Auto-generated method stub
 		super.onListItemClick(l, v, position, id);
 		Usuario usuario = usuarios.get(position);
-		Toast.makeText(this, usuario.getNome(), Toast.LENGTH_SHORT).show();
-		
 		Intent it = new Intent(this, ListaProdutosDoVendedorIndividual.class);
 		it.putExtra("usuario", usuario);
 		startActivity(it);
-		
 	}
 		
 	class DownloadJsonAsyncTask extends AsyncTask<String, Void, List<Usuario>>{

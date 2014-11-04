@@ -13,7 +13,9 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import br.ufc.si.sd.R;
 import br.ufc.si.sd.entidades.Usuario;
+import br.ufc.si.sd.lists.ListaComprasUsuario;
 import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
+import br.ufc.si.sd.lists.ListaVendasUsuario;
 import br.ufc.si.sd.lists.ListaVendedoresActivity;
 import br.ufc.si.sd.rest.UsuarioREST;
 
@@ -66,8 +68,21 @@ public class MainActivity extends Activity {
 			startActivity(it2);
 			break;
 			
+		case R.id.lista_compras:
+			Intent it3 = new Intent(MainActivity.this, ListaComprasUsuario.class);
+			it3.putExtra("usuario", usuario);
+			startActivity(it3);
+			break;
+			
+		case R.id.lista_vendas:
+			Intent it4 = new Intent(MainActivity.this, ListaVendasUsuario.class);
+			it4.putExtra("usuario", usuario);
+			startActivity(it4);
+			break;
+			
 		default:
 			break;
+			
 		}
 
 
@@ -170,10 +185,8 @@ public class MainActivity extends Activity {
 		@Override
 		protected String doInBackground(Usuario... params) {
 			Usuario usuario = params[0];
-			Log.i("-----", usuario.getId()+"");
 			UsuarioREST rest =new UsuarioREST();
 			boolean status = rest.verificarUsuario(usuario.getId());
-			Log.i("-----", status+"");
 			if(status == false){
 				try {
 					String resposta = rest.cadastrarUsario(usuario);
@@ -188,6 +201,4 @@ public class MainActivity extends Activity {
 		}
 		
 	}
-	
-	
 }
