@@ -72,12 +72,10 @@ public class ProdutoREST {
 	
 	public Produto getProdutoById(long id){
 		String[] json = new WebServiceCliente().get(URL_WS+"item/"+id);
-	
-		JSONObject produto1;
+		JSONObject produto;
 		try {
-			produto1 = new JSONObject(json[1]);
+			produto = new JSONObject(json[1]);
 			Produto produtoAux = new Produto();
-			JSONObject produto = produto1.getJSONObject("produto");
 			produtoAux.setNome(produto.getString("nome"));
 			produtoAux.setId(Long.parseLong(produto.getString("id")));
 			produtoAux.setDescricao(produto.getString("descricao"));
@@ -86,7 +84,7 @@ public class ProdutoREST {
 			produtoAux.setUsuarioId(Long.parseLong(produto.getString("usuarioId")));
 			return produtoAux;
 		} catch (JSONException e) {
-			Log.i(this.getClass().getSimpleName(), e.getMessage());
+			Log.i("JSON PRODUTO", e.getMessage());
 		}
 		return null;
 	}

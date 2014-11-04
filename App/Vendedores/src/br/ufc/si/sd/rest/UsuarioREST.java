@@ -63,4 +63,21 @@ public class UsuarioREST {
 		}
 		return usuarios;
 	}
+	
+	public Usuario getUsuarioById(Long id){
+		String[] json = new WebServiceCliente().get(URL_WS+id);
+		JSONObject usuario;
+		try{
+			usuario = new JSONObject(json[1]);
+			Usuario usuarioAux = new Usuario();
+			usuarioAux.setId(Long.parseLong(usuario.getString("id")));
+			usuarioAux.setNome(usuario.getString("nome"));
+			usuarioAux.setEmail(usuario.getString("email"));
+			return usuarioAux;
+		}catch(JSONException e){
+			Log.i(this.getClass().getSimpleName(), e.toString());
+		}
+		return null;
+	}
+	
 }
