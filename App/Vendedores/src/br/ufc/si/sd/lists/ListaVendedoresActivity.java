@@ -18,11 +18,14 @@ import android.widget.Toast;
 public class ListaVendedoresActivity extends ListActivity{
 
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
+	private Usuario usuarioPrincipal;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		Intent it = getIntent();
+		usuarioPrincipal = (Usuario) it.getExtras().get("usuario_principal");
 		new DownloadJsonAsyncTask().execute();
 		
 	}
@@ -34,6 +37,7 @@ public class ListaVendedoresActivity extends ListActivity{
 		Usuario usuario = usuarios.get(position);
 		Intent it = new Intent(this, ListaProdutosDoVendedorIndividual.class);
 		it.putExtra("usuario", usuario);
+		it.putExtra("usuario_principal", usuarioPrincipal);
 		startActivity(it);
 	}
 		
