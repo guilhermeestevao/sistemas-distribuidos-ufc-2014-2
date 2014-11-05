@@ -53,6 +53,7 @@ public class MainActivity extends Activity {
 		switch (item.getItemId()) {
 		case R.id.listar_vendedores:
 			Intent it = new Intent(MainActivity.this, ListaVendedoresActivity.class);
+			it.putExtra("usuario_principal", usuario);
 			startActivity(it);
 			break;
 
@@ -176,7 +177,7 @@ public class MainActivity extends Activity {
 			}).executeAsync();
 		}
 		else{
-			Log.i("Script", "Usu√°rio n√£o conectado");
+			Log.i("Script", "Usu·rio n„o conectado");
 		}
 	}
 

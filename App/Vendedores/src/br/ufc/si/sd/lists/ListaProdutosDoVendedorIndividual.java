@@ -23,6 +23,7 @@ public class ListaProdutosDoVendedorIndividual extends Activity {
 
 	private List<Produto> produtos = new ArrayList<Produto>();
 	private Usuario usuario;
+	private Usuario usuarioPrincipal;
 	private ExpandableListAdapterVendedorIndividual expListAdap;
 	private ExpandableListView listView;
 	
@@ -32,6 +33,7 @@ public class ListaProdutosDoVendedorIndividual extends Activity {
 		setContentView(R.layout.activity_lista_produtos_do_vendedor_individual);
 		Intent it = getIntent();
 		usuario = (Usuario) it.getExtras().get("usuario");
+		usuarioPrincipal = (Usuario) it.getExtras().get("usuario_principal");
 		new DownloadJsonAsyncTask().execute();
 	}
 	
@@ -60,7 +62,7 @@ public class ListaProdutosDoVendedorIndividual extends Activity {
 			dialog.dismiss();
 			if(result.size() > 0){
 				expListAdap = new ExpandableListAdapterVendedorIndividual(result,
-						ListaProdutosDoVendedorIndividual.this);
+						ListaProdutosDoVendedorIndividual.this, usuarioPrincipal);
 				listView = (ExpandableListView) findViewById(R.id.listView);
 				listView.setAdapter(expListAdap);
 			}else{

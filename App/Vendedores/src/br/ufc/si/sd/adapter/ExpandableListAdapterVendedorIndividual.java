@@ -30,11 +30,13 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 	private List<Produto> produtos;
 	private LayoutInflater inflater;
 	private Activity activity;
+	private Usuario usuarioPrincipal;
 
-	public ExpandableListAdapterVendedorIndividual(List<Produto> produtos, Activity activity) {
+	public ExpandableListAdapterVendedorIndividual(List<Produto> produtos, Activity activity, Usuario usuarioPrincipal) {
 		this.produtos = produtos;
 		this.activity = activity;
 		this.inflater = activity.getLayoutInflater();
+		this.usuarioPrincipal = usuarioPrincipal;
 	}
 
 	@Override
@@ -117,10 +119,11 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 							int quantidade = picker.getValue();
 							double valor = quantidade*produto.getPreco();
 							final Compra compra = new Compra();
-							compra.setIdComprador(usuario.getId());
+							compra.setIdComprador(usuarioPrincipal.getId());
 							compra.setIdProduto(produto.getId());
 							compra.setQuantidadeProduto(quantidade);
-							compra.setIdVendedor(produto.getUsuarioId());
+							compra.setIdVendedor(usuario.getId());
+							Log.i("JSON PRODUTO", "id: "+compra.getIdVendedor());
 							compra.setValorVenda(valor);
 
 							new RealizarCompraAsyncTask().execute(compra);
@@ -135,7 +138,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 					builder.show();
 					
 				}else{
-					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("NÃ£o esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
+					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Não esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
 					builder.create().show();
 				}
 			}
