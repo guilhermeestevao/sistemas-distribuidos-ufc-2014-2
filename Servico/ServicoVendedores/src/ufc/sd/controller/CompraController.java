@@ -20,13 +20,12 @@ public class CompraController {
 		int quantidadeAtual =produto.getQuantidade();
 		int quantidadeAtualizada = quantidadeAtual - compra.getQuantidadeProduto();
 		produto.setQuantidade(quantidadeAtualizada);
+		
 		try {
 			cdao.beginTransaction();
 			pdao.save(produto);
 			cdao.save(compra);
-			
 			cdao.commit();
-			
 			return "Compra Cadastrada com sucesso  no valor de R$: " + compra.getValorVenda();
 		} catch (Exception e) {
 			return  e.getMessage();

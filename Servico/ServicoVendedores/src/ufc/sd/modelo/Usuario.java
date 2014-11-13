@@ -14,6 +14,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
+/**
+ * @author guilherme
+ *
+ */
 @Entity
 @Table(name="usuarios")
 @XmlRootElement
@@ -24,16 +28,20 @@ public class Usuario implements Serializable{
 	private long id;
 	private String nome;
 	private String email;
+	private double lat;
+	private double lng;
 	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Usuario(long id, String nome, String email) {
+	public Usuario(long id, String nome, String email, double lat, double lng) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
+		this.lat =lat;
+		this.lng = lng;
 	}
 	
 	public long getId() {
@@ -56,6 +64,22 @@ public class Usuario implements Serializable{
 		this.email = email;
 	}
 	
+	public double getLat() {
+		return lat;
+	}
+
+	public void setLat(double lat) {
+		this.lat = lat;
+	}
+
+	public double getLng() {
+		return lng;
+	}
+
+	public void setLng(double lng) {
+		this.lng = lng;
+	}
+
 	@Override
 	public String toString() {
 		return nome;
