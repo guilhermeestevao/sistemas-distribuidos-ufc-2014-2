@@ -1,6 +1,9 @@
 package br.ufc.si.sd.activities;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.location.Location;
@@ -18,6 +21,7 @@ import br.ufc.si.sd.lists.ListaComprasUsuario;
 import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
 import br.ufc.si.sd.lists.ListaVendasUsuario;
 import br.ufc.si.sd.rest.UsuarioREST;
+
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
@@ -29,8 +33,11 @@ import com.facebook.widget.ProfilePictureView;
 import com.google.android.gms.maps.GoogleMap;
 
 public class MainActivity extends Activity {
+	
 	private UiLifecycleHelper uiHelper;
 	private Usuario usuario = new Usuario();
+	List<GraphUser> friendsFacebooklist = new ArrayList<GraphUser>();
+	
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 		@Override
 		public void call(Session session, SessionState state, Exception exception) {
@@ -54,6 +61,7 @@ public class MainActivity extends Activity {
 		case R.id.listar_vendedores:
 			Intent it = new Intent(MainActivity.this, MapaAmigos.class);
 			it.putExtra("usuario_principal", usuario);
+			MapaAmigos.listaAmigosFacebook = this.friendsFacebooklist;
 			startActivity(it);
 			break;
 
@@ -144,8 +152,6 @@ public class MainActivity extends Activity {
 		uiHelper.onActivityResult(requestCode, resultCode, data);
 	}
 
-
-
 	public void onSessionStateChanged(final Session session, SessionState state, Exception exception){
 		if(session != null && session.isOpened()){
 
@@ -166,6 +172,8 @@ public class MainActivity extends Activity {
 						ProfilePictureView ppv = (ProfilePictureView) findViewById(R.id.fbImg);
 						ppv.setProfileId(user.getId());
 						
+						getFriends(session);
+						
 						usuario.setId(Long.parseLong(user.getId()));
 						usuario.setNome(user.getFirstName()+" "+user.getLastName());
 						usuario.setEmail(user.getProperty("email").toString());
@@ -181,6 +189,25 @@ public class MainActivity extends Activity {
 		}
 	}
 
+	public void getFriends(Session session){
+	 
+		
+		Request.newMyFriendsRequest(session, new Request.GraphUserListCallback() {
+			@Override
+			public void onCompleted(List<GraphUser> users, Response response) {
+				if(users != null){
+					Log.i("Script", "Friends: "+users.size());
+					friendsFacebooklist = users;
+					for (GraphUser graphUser : users) {
+						Log.i("Script", "Script "+graphUser.getName());
+					}
+				}
+				Log.i("Script", "response: "+response);
+			}
+		}).executeAsync();
+		
+	}
+	
 	class VerificaUsuarioAsyncTask extends AsyncTask<Usuario, Void, String>{
 
 		//private GoogleMap googleMap;

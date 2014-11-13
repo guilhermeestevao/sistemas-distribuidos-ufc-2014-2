@@ -27,10 +27,6 @@ public class Produto implements Serializable{
 		this.usuarioId = usuarioId;
 	}
 
-	
-	
-
-
 	public Produto(String nome, String descricao, int quantidade, double preco,
 			long usuarioId) {
 		super();
