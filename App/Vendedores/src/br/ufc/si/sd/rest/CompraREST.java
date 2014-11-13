@@ -16,7 +16,7 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class CompraREST {
 
-	private static final String URL_WS = "http://10.0.103.97:8080/ServicoVendedores/compra/";
+	private static final String URL_WS = "http://200.129.38.181:8080/ServicoVendedores/compra/";
 
 	public String realizarCompra(Compra compra){
 		JSONObject jo = new JSONObject();
