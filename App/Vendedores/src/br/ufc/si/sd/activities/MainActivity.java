@@ -1,9 +1,10 @@
 package br.ufc.si.sd.activities;
 
 import java.util.Arrays;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,9 +17,7 @@ import br.ufc.si.sd.entidades.Usuario;
 import br.ufc.si.sd.lists.ListaComprasUsuario;
 import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
 import br.ufc.si.sd.lists.ListaVendasUsuario;
-import br.ufc.si.sd.lists.ListaVendedoresActivity;
 import br.ufc.si.sd.rest.UsuarioREST;
-
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
@@ -27,6 +26,7 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.ProfilePictureView;
+import com.google.android.gms.maps.GoogleMap;
 
 public class MainActivity extends Activity {
 	private UiLifecycleHelper uiHelper;
@@ -183,6 +183,9 @@ public class MainActivity extends Activity {
 
 	class VerificaUsuarioAsyncTask extends AsyncTask<Usuario, Void, String>{
 
+		//private GoogleMap googleMap;
+		private Location myLocation;
+		
 		@Override
 		protected String doInBackground(Usuario... params) {
 			Usuario usuario = params[0];
@@ -190,6 +193,17 @@ public class MainActivity extends Activity {
 			boolean status = rest.verificarUsuario(usuario.getId());
 			if(status == false){
 				try {
+					
+					String locationProvider = LocationManager.NETWORK_PROVIDER;
+					LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+					myLocation = locationManager.getLastKnownLocation(locationProvider);
+					
+					double latitude = myLocation.getLatitude();
+					double longitude = myLocation.getLongitude();
+					
+					usuario.setLng(longitude);
+					usuario.setLat(latitude);
+					
 					String resposta = rest.cadastrarUsario(usuario);
 					return resposta;
 				} catch (Exception e) {

@@ -4,6 +4,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 
 import br.ufc.si.sd.R;
+import br.ufc.si.sd.entidades.Usuario;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -33,6 +34,13 @@ public class MapaAmigos extends Activity{
             googleMap = ((MapFragment) getFragmentManager().findFragmentById(
                     R.id.map)).getMap();
  
+            Usuario usuario = (Usuario) getIntent().getExtras().get("usuario");
+            
+            
+            googleMap.getUiSettings().setMyLocationButtonEnabled(true);
+			googleMap.getUiSettings().setCompassEnabled(true); 
+			googleMap.setMyLocationEnabled(true);
+            
             // check if map is created successfully or not
             if (googleMap == null) {
                 Toast.makeText(getApplicationContext(),
