@@ -11,13 +11,15 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class UsuarioREST {
 
-	private static final String URL_WS = "http://200.129.38.181:8080/ServicoVendedores/usuario/";
+	private static final String URL_WS = "http://10.0.103.97:8080/ServicoVendedores/usuario/";
 
 	public String cadastrarUsario(Usuario usuario) throws Exception{
 		JSONObject jo = new JSONObject();
 		jo.put("id", usuario.getId());
 		jo.put("nome", usuario.getNome());
 		jo.put("email", usuario.getEmail());
+		jo.put("lat", String.valueOf(usuario.getLat()));
+		jo.put("lng", String.valueOf(usuario.getLng()));
 		String jsonUsuario = jo.toString();
 		String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", jsonUsuario);
 		return respostaServidor[1];
