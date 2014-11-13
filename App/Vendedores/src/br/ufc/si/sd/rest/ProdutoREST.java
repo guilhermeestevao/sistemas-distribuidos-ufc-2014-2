@@ -12,7 +12,7 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class ProdutoREST {
 
-	private static final String URL_WS = "http://10.0.103.97:8080/ServicoVendedores/produtos/";
+	private static final String URL_WS = "http://200.129.38.181:8080/ServicoVendedores/produtos/";
 
 	public String cadastrarProduto(Produto produto){
 		JSONObject jo = new JSONObject();

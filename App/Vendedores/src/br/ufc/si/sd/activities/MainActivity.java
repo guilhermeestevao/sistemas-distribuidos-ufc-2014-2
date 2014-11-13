@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		switch (item.getItemId()) {
 		case R.id.listar_vendedores:
-			Intent it = new Intent(MainActivity.this, ListaVendedoresActivity.class);
+			Intent it = new Intent(MainActivity.this, MapaAmigos.class);
 			it.putExtra("usuario_principal", usuario);
 			startActivity(it);
 			break;
@@ -177,7 +177,7 @@ public class MainActivity extends Activity {
 			}).executeAsync();
 		}
 		else{
-			Log.i("Script", "Usuário não conectado");
+			Log.i("Script", "Usuï¿½rio nï¿½o conectado");
 		}
 	}
 
