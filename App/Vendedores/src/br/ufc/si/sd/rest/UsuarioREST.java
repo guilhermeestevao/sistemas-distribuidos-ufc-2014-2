@@ -57,6 +57,8 @@ public class UsuarioREST {
 				usuarioAux.setId(Long.parseLong(usuario.getString("id")));
 				usuarioAux.setNome(usuario.getString("nome"));
 				usuarioAux.setEmail(usuario.getString("email"));
+				usuarioAux.setLat(Double.parseDouble(usuario.getString("lat")));
+				usuarioAux.setLng(Double.parseDouble(usuario.getString("lng")));
 				usuarios.add(usuarioAux);
 			}
 			return usuarios;

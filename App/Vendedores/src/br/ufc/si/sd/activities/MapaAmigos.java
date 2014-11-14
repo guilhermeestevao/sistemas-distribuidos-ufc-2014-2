@@ -5,19 +5,24 @@ import java.util.List;
 
 import com.facebook.model.GraphUser;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.ufc.si.sd.R;
 import br.ufc.si.sd.entidades.Usuario;
+import br.ufc.si.sd.lists.ListaProdutosActivity;
 import br.ufc.si.sd.lists.ListaVendedoresActivity;
 import br.ufc.si.sd.rest.UsuarioREST;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -56,7 +61,17 @@ public class MapaAmigos extends Activity{
 			googleMap.setMyLocationEnabled(true);
 
 			new DownloadJsonAsyncTask().execute();
-		
+			
+			googleMap.setOnInfoWindowClickListener(new OnInfoWindowClickListener() {
+				
+				@Override
+				public void onInfoWindowClick(Marker marker) {
+					Intent it = new Intent(MapaAmigos.this, ListaProdutosActivity.class);
+					it.putExtra("usuario", usuarioPrincipal);
+					startActivity(it);
+				}
+			});
+			
 			if (googleMap == null) {
 				Toast.makeText(getApplicationContext(),
 						"Sorry! unable to create maps", Toast.LENGTH_SHORT)
@@ -110,11 +125,19 @@ public class MapaAmigos extends Activity{
 
 		private void addPontos(List<Usuario> usuarios) {
 			
-			//usuarios.remove(usuarioPrincipal);
+			usuarios.remove(usuarioPrincipal);
+			
 			
 			for (Usuario usuario  : usuarios) {
+				
+				
+				double latitude = usuario.getLat();
+
+				double longitude = usuario.getLng();
+				
+				LatLng coordenadas = new LatLng(latitude, longitude);
 				MarkerOptions marker = new MarkerOptions();
-				marker.position(new LatLng(usuario.getLat(), usuario.getLng()));
+				marker.position(coordenadas);
 				marker.title(usuario.getNome());
 				marker.snippet("Clique aqui para ver a lista de compras");			 
 				googleMap.addMarker(marker);
