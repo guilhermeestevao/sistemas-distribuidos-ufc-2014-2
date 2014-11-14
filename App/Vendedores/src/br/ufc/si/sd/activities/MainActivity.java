@@ -221,13 +221,10 @@ public class MainActivity extends Activity {
 					String locationProvider = LocationManager.NETWORK_PROVIDER;
 					LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 					myLocation = locationManager.getLastKnownLocation(locationProvider);
-					
 					double latitude = myLocation.getLatitude();
 					double longitude = myLocation.getLongitude();
-					
-					usuario.setLng(longitude);
 					usuario.setLat(latitude);
-					
+					usuario.setLng(longitude);
 					String resposta = rest.cadastrarUsario(usuario);
 					return resposta;
 				} catch (Exception e) {
