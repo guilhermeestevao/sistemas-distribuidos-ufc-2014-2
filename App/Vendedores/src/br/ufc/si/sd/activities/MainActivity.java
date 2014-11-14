@@ -131,20 +131,17 @@ public class MainActivity extends Activity {
 		uiHelper.onPause();
 	}
 
-
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 		uiHelper.onDestroy();
 	}
 
-
 	@Override
 	protected void onSaveInstanceState(Bundle bundle) {
 		super.onSaveInstanceState(bundle);
 		uiHelper.onSaveInstanceState(bundle);
 	}
-
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
