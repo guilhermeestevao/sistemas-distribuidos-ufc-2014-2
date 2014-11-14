@@ -67,7 +67,8 @@ public class MapaAmigos extends Activity{
 				@Override
 				public void onInfoWindowClick(Marker marker) {
 					Intent it = new Intent(MapaAmigos.this, ListaProdutosActivity.class);
-					it.putExtra("usuario", usuarioPrincipal);
+					Usuario usuarioClicado = getUsuarioTitle(marker.getTitle());
+					it.putExtra("usuario", usuarioClicado);
 					startActivity(it);
 				}
 			});
@@ -78,6 +79,15 @@ public class MapaAmigos extends Activity{
 						.show();
 			}
 		}
+	}
+	
+	public Usuario getUsuarioTitle(String title){
+		for(Usuario user: usuarios){
+			if(user.getNome().equals(title)){
+				return user;
+			}
+		}
+		return null;
 	}
 
 	@Override
