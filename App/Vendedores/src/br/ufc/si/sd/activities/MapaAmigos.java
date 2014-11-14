@@ -110,7 +110,7 @@ public class MapaAmigos extends Activity{
 
 		private void addPontos(List<Usuario> usuarios) {
 			
-			usuarios.remove(usuarioPrincipal);
+			//usuarios.remove(usuarioPrincipal);
 			
 			for (Usuario usuario  : usuarios) {
 				MarkerOptions marker = new MarkerOptions();
