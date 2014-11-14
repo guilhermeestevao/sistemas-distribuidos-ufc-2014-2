@@ -6,6 +6,8 @@ import java.util.List;
 import com.facebook.model.GraphUser;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.ufc.si.sd.R;
 import br.ufc.si.sd.entidades.Usuario;
@@ -99,12 +101,24 @@ public class MapaAmigos extends Activity{
 			super.onPostExecute(result);
 			dialog.dismiss();
 			if(result.size() > 0){
-				
+				addPontos(result);
 			}else{
 				AlertDialog.Builder builder = new AlertDialog.Builder(MapaAmigos.this).setTitle("Atenção") .setMessage("Não foi possivel acessar essas informções...") .setPositiveButton("OK", null); 
 				builder.create().show();
 			}
 		}
-	}
 
+		private void addPontos(List<Usuario> usuarios) {
+			
+			usuarios.remove(usuarioPrincipal);
+			
+			for (Usuario usuario  : usuarios) {
+				MarkerOptions marker = new MarkerOptions();
+				marker.position(new LatLng(usuario.getLat(), usuario.getLng()));
+				marker.title(usuario.getNome());
+				marker.snippet("Clique aqui para ver a lista de compras");			 
+				googleMap.addMarker(marker);
+			}
+		}
+	}
 }
