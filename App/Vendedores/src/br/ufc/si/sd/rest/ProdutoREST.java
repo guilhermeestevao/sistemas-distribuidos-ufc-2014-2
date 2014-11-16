@@ -12,7 +12,7 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class ProdutoREST {
 
-	private static final String URL_WS = "http://192.168.0.110:8080/ServicoVendedores/produtos/";
+	private static final String URL_WS = "http://192.168.0.118:8080/ServicoVendedores/produtos/";
 
 	public String cadastrarProduto(Produto produto){
 		JSONObject jo = new JSONObject();
@@ -23,6 +23,7 @@ public class ProdutoREST {
 			jo.put("quantidade", produto.getQuantidade());
 			jo.put("preco", produto.getPreco());
 			jo.put("usuarioId", produto.getUsuarioId());
+			jo.put("foto", String.valueOf(produto.getFoto()));
 			String produtoJson = jo.toString();
 			String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", produtoJson);
 			return respostaServidor[1];
@@ -59,6 +60,7 @@ public class ProdutoREST {
 			jo.put("quantidade", produto.getQuantidade());
 			jo.put("preco", produto.getPreco());
 			jo.put("usuarioId", produto.getUsuarioId());
+			jo.put("foto", String.valueOf(produto.getFoto()));
 			String produtoJson = jo.toString();
 			String[] respostaServidor = new WebServiceCliente().put(URL_WS+"atualizar", produtoJson);
 			return respostaServidor[1];
@@ -82,6 +84,7 @@ public class ProdutoREST {
 			produtoAux.setPreco(Double.parseDouble(produto.getString("preco")));
 			produtoAux.setQuantidade(Integer.parseInt(produto.getString("quantidade")));
 			produtoAux.setUsuarioId(Long.parseLong(produto.getString("usuarioId")));
+			produtoAux.setFoto(produto.getString("foto").getBytes());
 			return produtoAux;
 		} catch (JSONException e) {
 			Log.i("JSON PRODUTO", e.getMessage());

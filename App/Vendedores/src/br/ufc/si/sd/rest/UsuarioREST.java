@@ -11,9 +11,15 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class UsuarioREST {
 
-	private static final String URL_WS = "http://192.168.0.110:8080/ServicoVendedores/usuario/";
+	private static final String URL_WS = "http://192.168.0.118:8080/ServicoVendedores/usuario/";
 
 	public String cadastrarUsario(Usuario usuario) throws Exception{
+		String jsonUsuario = toJson(usuario);
+		String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", jsonUsuario);
+		return respostaServidor[1];
+	}
+
+	private String toJson(Usuario usuario) throws JSONException{
 		JSONObject jo = new JSONObject();
 		jo.put("id", usuario.getId());
 		jo.put("nome", usuario.getNome());
@@ -21,10 +27,10 @@ public class UsuarioREST {
 		jo.put("lat", String.valueOf(usuario.getLat()));
 		jo.put("lng", String.valueOf(usuario.getLng()));
 		String jsonUsuario = jo.toString();
-		String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", jsonUsuario);
-		return respostaServidor[1];
+		return jsonUsuario;
 	}
-
+	
+	
 	public boolean verificarUsuario(long id){
 		String[] respostaServidor = new WebServiceCliente().get(URL_WS+"verificar/"+id);
 		if(respostaServidor[0].equals("200"))
@@ -44,6 +50,12 @@ public class UsuarioREST {
 		}
 	}
 
+	public String atualizarUsuario(Usuario usuario) throws JSONException{
+		String json = toJson(usuario);
+		String[] resposta = new WebServiceCliente().put(URL_WS+"atualizar", json);
+		return resposta[1];
+	}
+	
 	private List<Usuario> getUsuarios(String json) {
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		try{

@@ -21,6 +21,7 @@ import br.ufc.si.sd.lists.ListaComprasUsuario;
 import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
 import br.ufc.si.sd.lists.ListaVendasUsuario;
 import br.ufc.si.sd.rest.UsuarioREST;
+import br.ufc.si.sd.util.SDCardUtils;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -88,7 +89,6 @@ public class MainActivity extends Activity {
 			it4.putExtra("usuario", usuario);
 			startActivity(it4);
 			break;
-			
 		default:
 			break;
 			
@@ -213,11 +213,11 @@ public class MainActivity extends Activity {
 		@Override
 		protected String doInBackground(Usuario... params) {
 			Usuario usuario = params[0];
+			SDCardUtils.salvarUsuario(usuario);
 			UsuarioREST rest =new UsuarioREST();
 			boolean status = rest.verificarUsuario(usuario.getId());
 			if(status == false){
 				try {
-					
 					String locationProvider = LocationManager.NETWORK_PROVIDER;
 					LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 					myLocation = locationManager.getLastKnownLocation(locationProvider);
@@ -225,6 +225,7 @@ public class MainActivity extends Activity {
 					double longitude = myLocation.getLongitude();
 					usuario.setLat(latitude);
 					usuario.setLng(longitude);
+				
 					String resposta = rest.cadastrarUsario(usuario);
 					return resposta;
 				} catch (Exception e) {
@@ -235,6 +236,7 @@ public class MainActivity extends Activity {
 			return "";
 				
 		}
+		
 		
 	}
 }
