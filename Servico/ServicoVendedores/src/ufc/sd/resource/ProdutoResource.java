@@ -53,4 +53,5 @@ public class ProdutoResource {
 	public String atualizarProduto(Produto produto){
 		return new ProdutoController().atualizarProduto(produto);
 	}
+	
 }

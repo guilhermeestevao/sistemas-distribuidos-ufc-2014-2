@@ -25,6 +25,25 @@ public class UsuarioController {
 		}
 	}
 	
+	public String atualizarUsuario(Usuario usuario){
+		UsuarioDAO dao = new UsuarioJPADAO();
+		try{
+		dao.beginTransaction();
+		System.out.println("Atualizar");
+		System.out.println(usuario.getId());
+		System.out.println(usuario.getNome());
+		System.out.println(usuario.getEmail());
+		System.out.println(usuario.getLat());
+		System.out.println(usuario.getLng());
+		dao.update(usuario);
+		dao.commit();
+		return "Usuário atualizado com sucesso!";
+		}catch(Exception e){
+			
+			return e.getMessage();
+		}
+	}
+	
 	public boolean verificaUsuario(long id){
 		UsuarioDAO dao = new UsuarioJPADAO();
 		boolean status = dao.verificaUsuario(id);
@@ -34,6 +53,8 @@ public class UsuarioController {
 	public Usuario getUsuario(long idUsuario){
 		return new UsuarioJPADAO().find(idUsuario);
 	}
+	
+	
 	
 }
 	
