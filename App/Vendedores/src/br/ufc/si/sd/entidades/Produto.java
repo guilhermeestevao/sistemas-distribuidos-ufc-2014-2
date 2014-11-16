@@ -10,6 +10,7 @@ public class Produto implements Serializable{
 	private String descricao;
 	private int quantidade;
 	private double preco;
+	private byte[] foto;
 	private long usuarioId;
 	
 	public Produto() {
@@ -87,7 +88,14 @@ public class Produto implements Serializable{
 		this.id = id;
 	}
 
-	
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+	}
+
 	@Override
 	public String toString() {
 		return nome;

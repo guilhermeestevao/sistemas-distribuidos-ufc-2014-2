@@ -414,7 +414,7 @@ int id action_context_bar 0x7f06002b
 int id action_menu_divider 0x7f060019
 int id action_menu_presenter 0x7f06001a
 int id action_mode_close_button 0x7f060032
-int id action_settings 0x7f060081
+int id action_settings 0x7f060082
 int id activity_chooser_view_content 0x7f060033
 int id always 0x7f06000f
 int id beginning 0x7f060014
@@ -520,6 +520,7 @@ int id standard 0x7f06001f
 int id submit_area 0x7f060047
 int id tabMode 0x7f060006
 int id terrain 0x7f060003
+int id teste 0x7f060081
 int id textView1 0x7f06004a
 int id textView2 0x7f060076
 int id text_email 0x7f060057

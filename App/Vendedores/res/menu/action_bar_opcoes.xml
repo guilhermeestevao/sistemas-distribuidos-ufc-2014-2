@@ -19,5 +19,9 @@
 	<item android:id="@+id/lista_vendas"
         android:title="Minhas vendas"
         android:showAsAction="never"/>
+	
+	<item android:id="@+id/teste"
+        android:title="Teste"
+        android:showAsAction="never"/>
 	 
 </menu>
