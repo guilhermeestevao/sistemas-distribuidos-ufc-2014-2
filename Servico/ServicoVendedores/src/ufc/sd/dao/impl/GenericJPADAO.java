@@ -27,7 +27,9 @@ public abstract class GenericJPADAO<T> implements GenericDAO<T> {
 	}
 
 	public void update(T entity){
+		//em.refresh(entity);
 		em.merge(entity);
+		
 	}
 	
 	public T find(Object id) {

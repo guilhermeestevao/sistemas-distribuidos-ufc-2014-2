@@ -20,7 +20,7 @@ public class CompraController {
 		int quantidadeAtual =produto.getQuantidade();
 		int quantidadeAtualizada = quantidadeAtual - compra.getQuantidadeProduto();
 		produto.setQuantidade(quantidadeAtualizada);
-		
+
 		try {
 			cdao.beginTransaction();
 			pdao.save(produto);
@@ -30,19 +30,19 @@ public class CompraController {
 		} catch (Exception e) {
 			return  e.getMessage();
 		}finally{
-			
+
 		}
-			
+
 	}
-	
+
 	public List<Compra> listarComprasDoUsuario(long idUsuario){
 		CompraDAO cdao = new CompraJPADAO();
 		return cdao.listarComprasDoUsuario(idUsuario);
 	}
-	
+
 	public List<Compra> listarVendasDoUsuario(long idUsuario){
 		CompraDAO cdao = new CompraJPADAO();
 		return cdao.listarVendasDoUsuario(idUsuario);
 	}
-	
+
 }
