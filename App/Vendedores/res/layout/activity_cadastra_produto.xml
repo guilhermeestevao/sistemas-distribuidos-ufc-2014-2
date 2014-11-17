@@ -1,30 +1,23 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="br.ufc.si.sd.CadastraProdutoActivity" >
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="18dp"
         android:text="Cadastrar Produto"
+        android:textSize="30dp"
         android:gravity="center"
-        android:layout_gravity="center_vertical"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_gravity="center_vertical" />
 
     <EditText
         android:id="@+id/edit_nome_produto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/textView1"
-        android:layout_below="@+id/textView1"
         android:layout_marginTop="23dp"
         android:ems="10"
         android:hint="Nome do produto" />
@@ -33,8 +26,6 @@
         android:id="@+id/edit_descricao_produto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_nome_produto"
-        android:layout_below="@+id/edit_nome_produto"
         android:layout_marginTop="22dp"
         android:ems="10"
         android:hint="Descrição do produto" />
@@ -43,8 +34,6 @@
         android:id="@+id/edit_qtd_produto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_descricao_produto"
-        android:layout_below="@+id/edit_descricao_produto"
         android:layout_marginTop="21dp"
         android:ems="10"
         android:hint="Quantidade do produto"
@@ -54,19 +43,38 @@
         android:id="@+id/edit_preco_produto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_qtd_produto"
-        android:layout_below="@+id/edit_qtd_produto"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Preço do produto"
         android:inputType="numberDecimal" />
-
+    
+	<LinearLayout
+	   android:id="@+id/menu_superior"
+	   android:layout_width="match_parent"
+	   android:layout_height="wrap_content"
+	   android:orientation="horizontal">
+	   
+    	<Button 
+	        android:id="@+id/btn_tirar_foto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Tirar Foto"
+        />
+    	<Button 
+	        android:id="@+id/btn_ver_foto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Ver Foto"
+        />
+	</LinearLayout>
+    
     <Button
         android:id="@+id/btn_cadastrar_produto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/edit_preco_produto"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="bottom"
         android:text="Cadastrar Produto" />
     
-</RelativeLayout>
+    
+</LinearLayout>
