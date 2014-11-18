@@ -224,8 +224,7 @@ public class MainActivity extends Activity {
 					double latitude = myLocation.getLatitude();
 					double longitude = myLocation.getLongitude();
 					usuario.setLat(latitude);
-					usuario.setLng(longitude);
-				
+					usuario.setLng(longitude);		
 					String resposta = rest.cadastrarUsario(usuario);
 					return resposta;
 				} catch (Exception e) {
@@ -236,7 +235,6 @@ public class MainActivity extends Activity {
 			return "";
 				
 		}
-		
 		
 	}
 }

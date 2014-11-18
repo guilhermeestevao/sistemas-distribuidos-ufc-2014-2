@@ -14,6 +14,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import br.ufc.si.sd.R;
 import br.ufc.si.sd.entidades.Usuario;
 import br.ufc.si.sd.lists.ListaProdutosActivity;
+import br.ufc.si.sd.lists.ListaProdutosDoVendedorIndividual;
+import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
 import br.ufc.si.sd.lists.ListaVendedoresActivity;
 import br.ufc.si.sd.rest.UsuarioREST;
 import android.app.Activity;
@@ -66,9 +68,10 @@ public class MapaAmigos extends Activity{
 				
 				@Override
 				public void onInfoWindowClick(Marker marker) {
-					Intent it = new Intent(MapaAmigos.this, ListaProdutosActivity.class);
+					Intent it = new Intent(MapaAmigos.this, ListaProdutosDoVendedorIndividual.class);
 					Usuario usuarioClicado = getUsuarioTitle(marker.getTitle());
 					it.putExtra("usuario", usuarioClicado);
+					it.putExtra("usuario_principal", usuarioPrincipal);
 					startActivity(it);
 				}
 			});
