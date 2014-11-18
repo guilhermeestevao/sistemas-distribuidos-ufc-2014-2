@@ -37,6 +37,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 		this.activity = activity;
 		this.inflater = activity.getLayoutInflater();
 		this.usuarioPrincipal = usuarioPrincipal;
+		
 	}
 
 	@Override
@@ -138,7 +139,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 					builder.show();
 					
 				}else{
-					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Não esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
+					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Nï¿½o esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
 					builder.create().show();
 				}
 			}
@@ -189,6 +190,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 					
 					Intent it = new Intent(activity, ListaProdutosDoVendedorIndividual.class);
 					it.putExtra("usuario", usuario);
+					it.putExtra("usuario_principal", usuario);
 					activity.startActivity(it);
 				}
 			}); 
