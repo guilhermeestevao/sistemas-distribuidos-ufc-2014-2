@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:id="@+id/listar_vendedores"
+        android:title="Ver vendedores"
+        android:showAsAction="never"/>
+    
+    <item android:id="@+id/cadastra_produto"
+        android:title="Cadastrar Produto"
+        android:showAsAction="never"/>
+    
+    <item android:id="@+id/lista_produto"
+        android:title="Listar Produtos"
+        android:showAsAction="never"/>
+    
+	<item android:id="@+id/lista_compras"
+        android:title="Minhas compras"
+        android:showAsAction="never"/>
+	
+	<item android:id="@+id/lista_vendas"
+        android:title="Minhas vendas"
+        android:showAsAction="never"/>
+	
+	<item android:id="@+id/teste"
+        android:title="Teste"
+        android:showAsAction="never"/>
+	 
+</menu>

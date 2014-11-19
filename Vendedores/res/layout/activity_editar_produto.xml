@@ -1,0 +1,89 @@
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="18dp"
+        android:text="Editar Produto"
+        android:gravity="center"
+        android:layout_gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/edit_nome_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:hint="Nome do produto" />
+
+    <EditText
+        android:id="@+id/edit_descricao_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_nome_produto"
+        android:layout_below="@+id/edit_nome_produto"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="Descrição do produto" />
+
+    <EditText
+        android:id="@+id/edit_qtd_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_descricao_produto"
+        android:layout_below="@+id/edit_descricao_produto"
+        android:layout_marginTop="21dp"
+        android:ems="10"
+        android:hint="Quantidade do produto"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/edit_preco_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_qtd_produto"
+        android:layout_below="@+id/edit_qtd_produto"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Preço do produto"
+        android:inputType="numberDecimal" />
+
+    <LinearLayout
+	   android:id="@+id/linear_fotos_edit"
+	   android:layout_width="match_parent"
+	   android:layout_height="wrap_content"
+	   android:orientation="horizontal">
+	   
+    	<Button 
+	        android:id="@+id/btn_tirar_foto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Tirar Foto"
+        />
+    	<Button 
+	        android:id="@+id/btn_ver_foto"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="Ver Foto"
+        />
+	</LinearLayout>
+    
+    <Button
+        android:id="@+id/btn_atuaalizar_produto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/edit_preco_produto"
+        android:layout_alignParentBottom="true"
+        android:text="Atualizar Produto" />
+    
+</LinearLayout>
