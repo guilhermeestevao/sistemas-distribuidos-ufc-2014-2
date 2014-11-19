@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Logica {
 
-	private CaseRemoto iniciarServidor(){
+	private CaseRemoto iniciarServidor() {
 		CaseRemoto refRemota = null;
 		try {
 			refRemota = (CaseRemoto) Naming.lookup("//localhost/caseServer");
@@ -26,26 +26,35 @@ public class Logica {
 		}
 		return null;
 	}
-	
-	public String[] posicionarTabuleiro(List<Navio> navios) {
 
+	public User criarUsuario(String nome) {
 		CaseRemoto remote = iniciarServidor();
-		String nav[];
 		try {
-			nav = remote.posicionarBatalhaNaval(navios);
-			return nav;
+			User user = remote.criarUsuario(nome);
+			return user;
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public Pontuacao verificarPosicao(int posicao){
+		CaseRemoto remote = iniciarServidor();
+		try {
+			Pontuacao pontuacao = remote.verificarPosicao(posicao);
+			return pontuacao;
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 	
-	public String msgGameOver(int pontuacao, String user) {
+	public String msgGameOver(int pontuacao, String user, int retorno) {
 
 		CaseRemoto remote = iniciarServidor();
 		String msg;
 		try {
-			msg = remote.mensagemGameOver(pontuacao, user);
+			msg = remote.mensagemGameOver(pontuacao, user, retorno);
 			return msg;
 		} catch (RemoteException e) {
 			e.printStackTrace();
