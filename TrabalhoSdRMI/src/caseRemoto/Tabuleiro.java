@@ -19,20 +19,20 @@ public class Tabuleiro {
 
 	private JFrame frame;
 	private List<String> posicoes;
-	private String posicoesBatalhaNaval[];
 	private List<JButton> buttons;
 	private List<JButton> buttons1;
-	private Usuario usuario;
+	private User user;
 	private JLabel lblValorPontuacao;
 	private int pecasAcertadas;
-	private int pontuacao;
+	private int numeroPecas;
+	private int contPecasAcertadas;
 	private Logica logica;
 	
-	public Tabuleiro(Usuario usuario) {
+	public Tabuleiro(String user) {
 		logica = new Logica();
-		this.usuario = usuario;
-		posicoesBatalhaNaval = logica.posicionarTabuleiro(usuario.getNavio());
-		pontuacao = 0;
+		this.user = logica.criarUsuario(user);
+		numeroPecas = numeroPecas();
+		contPecasAcertadas = 0;
 		pecasAcertadas = 0;
 		initialize();
 	}
@@ -44,7 +44,7 @@ public class Tabuleiro {
 
 		setFrame(new JFrame());
 		getFrame().setResizable(false);
-		getFrame().setBounds(100, 100, 1000, 600);
+		getFrame().setBounds(100, 100, 778, 600);
 		getFrame().setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		final JPanel panel = new JPanel();
@@ -52,27 +52,77 @@ public class Tabuleiro {
 		getFrame().getContentPane().add(panel);
 		panel.setLayout(null);
 
-		final JPanel panel_1 = new JPanel();
-		panel_1.setBounds(534, 44, 450, 450);
-		getFrame().getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-
 		getFrame().getContentPane().setLayout(null);
 		
-		JLabel lblUser = new JLabel(usuario.getNome());
+		JLabel lblUser = new JLabel(user.getNome());
 		lblUser.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblUser.setBounds(39, 19, 335, 14);
+		lblUser.setBounds(501, 92, 230, 14);
 		frame.getContentPane().add(lblUser);
 		
 		JLabel lblPontuao = new JLabel("Pontuação: ");
 		lblPontuao.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPontuao.setBounds(20, 513, 126, 14);
+		lblPontuao.setBounds(491, 400, 126, 14);
 		frame.getContentPane().add(lblPontuao);
 		
-		lblValorPontuacao = new JLabel(String.valueOf(pontuacao));
+		lblValorPontuacao = new JLabel(String.valueOf(user.getPontuacao()));
 		lblValorPontuacao.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblValorPontuacao.setBounds(132, 513, 162, 14);
+		lblValorPontuacao.setBounds(512, 425, 162, 14);
 		frame.getContentPane().add(lblValorPontuacao);
+		
+		JLabel lblUsurio = new JLabel("Usuário: ");
+		lblUsurio.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblUsurio.setBounds(491, 63, 126, 14);
+		frame.getContentPane().add(lblUsurio);
+		
+		JLabel lblQtdSubmarino = new JLabel("Qtd Submarino:");
+		lblQtdSubmarino.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdSubmarino.setBounds(491, 128, 190, 14);
+		frame.getContentPane().add(lblQtdSubmarino);
+		
+		JLabel lblQtdSubmarinoValor = new JLabel(String.valueOf(user.getQtdNavios()[user.SUBMARINO]));
+		lblQtdSubmarinoValor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdSubmarinoValor.setBounds(512, 153, 230, 14);
+		frame.getContentPane().add(lblQtdSubmarinoValor);
+		
+		JLabel lblQtdTorpedeiro = new JLabel("Qtd Torpedeiro:");
+		lblQtdTorpedeiro.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdTorpedeiro.setBounds(491, 178, 190, 14);
+		frame.getContentPane().add(lblQtdTorpedeiro);
+		
+		JLabel labellblQtdTorpedeiroValor = new JLabel(String.valueOf(user.getQtdNavios()[user.TORPEDEIRO]));
+		labellblQtdTorpedeiroValor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		labellblQtdTorpedeiroValor.setBounds(512, 203, 230, 14);
+		frame.getContentPane().add(labellblQtdTorpedeiroValor);
+		
+		JLabel lblQtdCruzador = new JLabel("Qtd Cruzador:");
+		lblQtdCruzador.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdCruzador.setBounds(491, 228, 190, 14);
+		frame.getContentPane().add(lblQtdCruzador);
+		
+		JLabel lblQtdCruzadorValor = new JLabel(String.valueOf(user.getQtdNavios()[user.CRUZADOR]));
+		lblQtdCruzadorValor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdCruzadorValor.setBounds(512, 253, 230, 14);
+		frame.getContentPane().add(lblQtdCruzadorValor);
+		
+		JLabel lblQtdCouradoro = new JLabel("Qtd Couradoro:");
+		lblQtdCouradoro.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdCouradoro.setBounds(491, 278, 190, 14);
+		frame.getContentPane().add(lblQtdCouradoro);
+		
+		JLabel lblQtdCouradoroValor = new JLabel(String.valueOf(user.getQtdNavios()[user.COURADORO]));
+		lblQtdCouradoroValor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdCouradoroValor.setBounds(512, 303, 230, 14);
+		frame.getContentPane().add(lblQtdCouradoroValor);
+		
+		JLabel lblQtdPortaavies = new JLabel("Qtd Porta-Aviões:");
+		lblQtdPortaavies.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdPortaavies.setBounds(491, 328, 240, 14);
+		frame.getContentPane().add(lblQtdPortaavies);
+		
+		JLabel lblQtdPortaaviesValor = new JLabel(String.valueOf(user.getQtdNavios()[user.PORTA_AVIOES]));
+		lblQtdPortaaviesValor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblQtdPortaaviesValor.setBounds(512, 353, 230, 14);
+		frame.getContentPane().add(lblQtdPortaaviesValor);
 
 		JButton button_0_0 = new JButton("");
 		buttons.add(button_0_0);
@@ -680,7 +730,6 @@ public class Tabuleiro {
 				buttons.get((i*10)+j).setBounds(10+(39*j), 10+(39*i), 40, 40);
 				panel.add(buttons.get((i*10)+j));
 				buttons1.get((i*10)+j).setBounds(10+(39*j), 10+(39*i), 40, 40);
-				panel_1.add(buttons1.get((i*10)+j));
 				buttons1.get((i*10)+j).setEnabled(false);
 			}
 		}
@@ -690,7 +739,6 @@ public class Tabuleiro {
 			buttons.get(j).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					verificarPosicao(j, buttons.get(j));
-					verificarPosicaoAdversario(j, buttons1.get(j));
 				}
 			});
 		}
@@ -698,42 +746,58 @@ public class Tabuleiro {
 	}
 
 	private void verificarPosicao(int i, JButton button) {
-		if (posicoesBatalhaNaval[i].equals("submarino")) {
+		
+		Pontuacao pontuacao = logica.verificarPosicao(i);
+		String posicoesBatalhaNaval = pontuacao.getNomePosicao();
+		
+		if (posicoesBatalhaNaval.equals("submarino")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\navio.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_torpedeiro")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\navio.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("left_torpedeiro")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_torpedeiro")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("right_torpedeiro")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("center_cruzador")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("center_cruzador")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_cruzador")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("left_cruzador")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_cruzador")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("right_cruzador")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("center_couradoro")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("center_couradoro")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_couradoro")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("left_couradoro")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_couradoro")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("right_couradoro")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("center_porta_avioes")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("center_porta_avioes")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_porta_avioes")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("left_porta_avioes")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_porta_avioes")) {
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"),
+					pontuacao.getPontuacao());
+		} else if (posicoesBatalhaNaval.equals("right_porta_avioes")) {
 			functionButton(button, new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
+					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"),
+					pontuacao.getPontuacao());
 		} else {
 			button.setIcon(new ImageIcon(
 					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\x.png"));
@@ -741,61 +805,32 @@ public class Tabuleiro {
 		}
 	}
 	
-	private void verificarPosicaoAdversario(int i, JButton button) {
-		if (posicoesBatalhaNaval[i].equals("submarino")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\navio.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_torpedeiro")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_torpedeiro")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("center_cruzador")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_cruzador")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_cruzador")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("center_couradoro")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_couradoro")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_couradoro")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("center_porta_avioes")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\center_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("left_porta_avioes")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\left_nav.png"));
-		} else if (posicoesBatalhaNaval[i].equals("right_porta_avioes")) {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\right_nav.png"));
-		} else {
-			button.setIcon(new ImageIcon(
-					"C:\\Users\\Alex Oliveira\\Documents\\workspace\\TrabalhoSdRMI\\img\\x.png"));
-		}
-	}
-
-	private void functionButton(JButton button, ImageIcon image) {
+	private void functionButton(JButton button, ImageIcon image, int pontos) {
 		button.setIcon(image);
 		button.setEnabled(false);
-		pontuacao += 1;
-		lblValorPontuacao.setText(String.valueOf(pontuacao));
+		user.setPontuacao(user.getPontuacao()+pontos);
+		lblValorPontuacao.setText(String.valueOf(user.getPontuacao()));
 		pecasAcertadas += 1;
+		contPecasAcertadas += 1;
+		if(contPecasAcertadas == pecasAcertadas){
+			String message = logica.msgGameOver(user.getPontuacao(), user.getNome(), 1);
+			JOptionPane.showMessageDialog(null, message);
+		}
 		if(pecasAcertadas == 30){
-			String message = logica.msgGameOver(pontuacao, usuario.getNome());
+			String message = logica.msgGameOver(user.getPontuacao(), user.getNome(), 0);
 			JOptionPane.showMessageDialog(null, message);
 		}
 	}
 
+	private int numeroPecas(){
+		int num = user.getQtdNavios()[user.SUBMARINO] + 
+				user.getQtdNavios()[user.TORPEDEIRO] * 2 +
+				user.getQtdNavios()[user.CRUZADOR] * 3 +
+				user.getQtdNavios()[user.COURADORO] * 4 +
+				user.getQtdNavios()[user.PORTA_AVIOES] * 5;
+		return num;
+	}
+	
 	public JFrame getFrame() {
 		return frame;
 	}
