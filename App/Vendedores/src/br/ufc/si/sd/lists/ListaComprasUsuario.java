@@ -3,6 +3,7 @@ package br.ufc.si.sd.lists;
 import java.util.List;
 
 import br.ufc.si.sd.R;
+import br.ufc.si.sd.activities.CompraActivity;
 import br.ufc.si.sd.entidades.Compra;
 import br.ufc.si.sd.entidades.Produto;
 import br.ufc.si.sd.entidades.Usuario;
@@ -28,12 +29,14 @@ public class ListaComprasUsuario extends ListActivity {
 	List<Compra> compras;
 	Produto produto;
 	Usuario usuarioVendedor;
-
+	Usuario usuario;
+	Compra compra;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		Usuario usuario = (Usuario) getIntent().getExtras().get("usuario");
+		usuario = (Usuario) getIntent().getExtras().get("usuario");
 		new DownloadJsonComprasAsyncTask().execute(usuario);
 	}
 
@@ -76,7 +79,7 @@ public class ListaComprasUsuario extends ListActivity {
 			} else {
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						ListaComprasUsuario.this)
-						.setTitle("Atençãoo")
+						.setTitle("Atenï¿½ï¿½oo")
 						.setMessage(
 								"NÃ£o foi possivel acessar essas informÃ§Ãµes...")
 						.setPositiveButton("OK", null);
@@ -99,7 +102,7 @@ public class ListaComprasUsuario extends ListActivity {
 
 		@Override
 		protected Produto doInBackground(Compra... params) {
-			Compra compra = params[0];
+			compra = params[0];
 			produto = new ProdutoREST().getProdutoById(compra.getIdProduto());
 			usuarioVendedor = new UsuarioREST().getUsuarioById(compra.getIdVendedor());
 			return produto;
@@ -110,20 +113,28 @@ public class ListaComprasUsuario extends ListActivity {
 			super.onPostExecute(result);
 			dialog.dismiss();
 			if (result != null) {
+				/*
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						ListaComprasUsuario.this);
 				builder.setMessage("PRODUTO: " + result.getNome() + "\n\n"
-						+ "DESCRIÇÃO: " + result.getDescricao() + "\n\n"
+						+ "DESCRIï¿½ï¿½O: " + result.getDescricao() + "\n\n"
 						+ "QUANTIDADE COMPRADA: " + result.getQuantidade() + "\n\n" 
-						+ "PREÇO TOTAL" + result.getPreco() + "\n\n" 
+						+ "PREï¿½O TOTAL" + result.getPreco() + "\n\n" 
 						+ "Vendedor do produto: " + usuarioVendedor.getNome());
 				builder.setPositiveButton("OK", null);
 
 				builder.create().show();
+				*/
+				Intent it = new Intent(ListaComprasUsuario.this, CompraActivity.class);
+				it.putExtra("vendedor", usuarioVendedor);
+				it.putExtra("produto", produto);
+				it.putExtra("compra", compra);
+				it.putExtra("usuario", usuario);
+				startActivity(it);
 			} else {
 				AlertDialog.Builder builder = new AlertDialog.Builder(
 						ListaComprasUsuario.this)
-						.setTitle("Atençãoo")
+						.setTitle("Atenï¿½ï¿½oo")
 						.setMessage(
 								"NÃ£o foi possivel acessar essas informÃ§Ãµes...")
 						.setPositiveButton("OK", null);

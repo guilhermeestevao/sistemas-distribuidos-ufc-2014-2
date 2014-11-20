@@ -1,9 +1,11 @@
 package br.ufc.si.sd.entidades;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Compra {
+
+public class Compra implements Serializable{
 
 	private long id;
 	private long idVendedor;
