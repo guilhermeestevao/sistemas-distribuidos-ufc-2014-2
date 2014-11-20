@@ -31,7 +31,6 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.facebook.widget.LoginButton;
 import com.facebook.widget.ProfilePictureView;
-import com.google.android.gms.maps.GoogleMap;
 
 public class MainActivity extends Activity {
 	

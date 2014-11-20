@@ -23,11 +23,14 @@ public class ActivityVerFoto extends Activity{
 
         Bundle dados = getIntent().getExtras();
         byte[] array = dados.getByteArray("imagem");
-        
-	        imagem = converterBlobParaImagem(array);
+        if(array==null){
+        	Toast.makeText(this, "O Produto não possui imagem.", Toast.LENGTH_SHORT);
+        }else{
+        	imagem = converterBlobParaImagem(array);
 			ImageView imageView = (ImageView) findViewById(R.id.imageView1);
 			imageView.setImageBitmap(this.imagem);	
-        
+        }
+        	
 	}
 	
 	public static Bitmap converterBlobParaImagem(byte[] bytes) { 
