@@ -2,6 +2,7 @@ package br.ufc.si.sd.adapter;
 
 import java.util.List;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -16,9 +17,11 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import br.ufc.si.sd.R;
+import br.ufc.si.sd.activities.CurtirFacebook;
 import br.ufc.si.sd.entidades.Compra;
 import br.ufc.si.sd.entidades.Produto;
 import br.ufc.si.sd.entidades.Usuario;
@@ -99,6 +102,19 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 		t2.setText("Preco: "+String.valueOf(produto.getPreco()));
 
 		Button btnComprar = (Button) convertView.findViewById(R.id.comprar);
+		
+		ImageButton btnCurtir = (ImageButton) convertView.findViewById(R.id.bt_curtir);
+		
+		btnCurtir.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(activity, CurtirFacebook.class);
+				activity.startActivity(intent);
+			}
+		});
+		
+		
 		btnComprar.setOnClickListener(new View.OnClickListener() {
 
 			@Override
