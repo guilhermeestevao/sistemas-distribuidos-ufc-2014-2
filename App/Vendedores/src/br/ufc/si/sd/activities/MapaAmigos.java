@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.facebook.model.GraphUser;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter;
 import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -13,19 +14,21 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.ufc.si.sd.R;
 import br.ufc.si.sd.entidades.Usuario;
-import br.ufc.si.sd.lists.ListaProdutosActivity;
 import br.ufc.si.sd.lists.ListaProdutosDoVendedorIndividual;
-import br.ufc.si.sd.lists.ListaProdutosPorVendedor;
-import br.ufc.si.sd.lists.ListaVendedoresActivity;
+import br.ufc.si.sd.rest.AvaliacaoREST;
 import br.ufc.si.sd.rest.UsuarioREST;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.ArrayAdapter;
+import android.view.Gravity;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MapaAmigos extends Activity{
@@ -73,6 +76,58 @@ public class MapaAmigos extends Activity{
 					it.putExtra("usuario", usuarioClicado);
 					it.putExtra("usuario_principal", usuarioPrincipal);
 					startActivity(it);
+				}
+				
+			});
+			
+			googleMap.setInfoWindowAdapter(new InfoWindowAdapter() {
+				
+				
+				
+				@Override
+				public View getInfoWindow(Marker arg0) {
+					// TODO Auto-generated method stub
+					return null;
+				}
+				
+				@Override
+				public View getInfoContents(Marker marker) {
+					// TODO Auto-generated method stub
+					//long id = getLocalTitle(marker.getTitle());
+
+					//new ObterAvaliacaoAsyncTask().execute(id);
+					
+					LinearLayout ll = new LinearLayout(MapaAmigos.this);
+					ll.setOrientation(LinearLayout.VERTICAL);
+					
+					TextView tv = new TextView(MapaAmigos.this);
+					tv.setGravity(Gravity.CENTER);
+					tv.setTextSize(20);
+					tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+					tv.setText(marker.getTitle());
+					ll.addView(tv);
+					
+					TextView tv1 = new TextView(MapaAmigos.this);
+					tv1.setGravity(Gravity.CENTER);
+					tv1.setText(marker.getSnippet());
+					ll.addView(tv1);
+					
+					
+					RatingBar rb = new RatingBar(MapaAmigos.this);
+					rb.setNumStars(5);
+					//rb.setRating((float) cursor.getDouble(0));
+					ll.addView(rb);
+					
+					return ll;
+				}
+
+				private long getLocalTitle(String title) {
+					for (Usuario usuario : usuarios) {
+						if(usuario.getNome().equals(title))
+							return usuario.getId();
+					}
+					
+					return 0;
 				}
 			});
 			
@@ -140,14 +195,9 @@ public class MapaAmigos extends Activity{
 			
 			usuarios.remove(usuarioPrincipal);
 			
-			
 			for (Usuario usuario  : usuarios) {
-				
-				
 				double latitude = usuario.getLat();
-
 				double longitude = usuario.getLng();
-				
 				LatLng coordenadas = new LatLng(latitude, longitude);
 				MarkerOptions marker = new MarkerOptions();
 				marker.position(coordenadas);
@@ -157,4 +207,30 @@ public class MapaAmigos extends Activity{
 			}
 		}
 	}
+	
+	class ObterAvaliacaoAsyncTask extends AsyncTask<Long, Void, Double>{
+
+		ProgressDialog dialog;
+		
+		@Override
+		protected void onPreExecute() {
+			
+			super.onPreExecute();
+		}
+		
+		@Override
+		protected Double doInBackground(Long... params) {
+			long id = params[0];
+			double avaliacao = new AvaliacaoREST().obterAvaliacao(id);
+			return avaliacao;
+		}
+		
+		@Override
+		protected void onPostExecute(Double result) {
+			// TODO Auto-generated method stub
+			super.onPostExecute(result);
+		}
+		
+	}
+	
 }

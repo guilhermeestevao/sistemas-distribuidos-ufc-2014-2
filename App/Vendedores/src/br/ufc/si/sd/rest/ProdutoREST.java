@@ -59,7 +59,7 @@ public class ProdutoREST {
 			jo.put("quantidade", produto.getQuantidade());
 			jo.put("preco", produto.getPreco());
 			jo.put("usuarioId", produto.getUsuarioId());
-			jo.put("foto", String.valueOf(produto.getFoto()));
+			//jo.put("foto", String.valueOf(produto.getFoto()));
 			String produtoJson = jo.toString();
 			String[] respostaServidor = new WebServiceCliente().put(URL_WS+"atualizar", produtoJson);
 			return respostaServidor[1];
@@ -83,7 +83,7 @@ public class ProdutoREST {
 			produtoAux.setPreco(Double.parseDouble(produto.getString("preco")));
 			produtoAux.setQuantidade(Integer.parseInt(produto.getString("quantidade")));
 			produtoAux.setUsuarioId(Long.parseLong(produto.getString("usuarioId")));
-			produtoAux.setFoto(produto.getString("foto").getBytes());
+			//produtoAux.setFoto(produto.getString("foto").getBytes());
 			return produtoAux;
 		} catch (JSONException e) {
 			Log.i("JSON PRODUTO", e.getMessage());
