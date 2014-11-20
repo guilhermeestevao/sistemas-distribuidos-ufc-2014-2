@@ -37,6 +37,7 @@ public class CadastraProdutoActivity extends Activity {
 		final ProdutoREST rest = new ProdutoREST();
 		Button btnCadastrarProduto = (Button) findViewById(R.id.btn_cadastrar_produto);
 		Button btnTirarFoto = (Button) findViewById(R.id.btn_tirar_foto);
+		Button btnVerFoto = (Button) findViewById(R.id.btn_ver_foto);
 		
 		btnTirarFoto.setOnClickListener(new OnClickListener() {
 			
@@ -45,6 +46,17 @@ public class CadastraProdutoActivity extends Activity {
 				// TODO Auto-generated method stub
 				Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 			    startActivityForResult(cameraIntent,CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+			}
+		});
+		
+		btnVerFoto.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(CadastraProdutoActivity.this, ActivityVerFoto.class);
+				intent.putExtra("imagem",convertBitMap(imagem));
+			    startActivity(intent);
 			}
 		});
 		
@@ -64,7 +76,10 @@ public class CadastraProdutoActivity extends Activity {
 							long idUsuario = usuario.getId();
 
 							Produto produto = new Produto(nome, descricao, quantidade, preco, idUsuario);
-							produto.setFoto(convertBitMap(imagem));
+							if(imagem != null){
+								produto.setFoto(convertBitMap(imagem));
+							}
+							
 							String resposta = rest.cadastrarProduto(produto);
 							Intent it = new Intent(CadastraProdutoActivity.this, ListaProdutosPorVendedor.class);
 							it.putExtra("usuario", usuario);
