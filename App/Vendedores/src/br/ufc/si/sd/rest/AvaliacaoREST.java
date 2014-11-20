@@ -8,7 +8,7 @@ import br.ufc.si.sd.util.WebServiceCliente;
 
 public class AvaliacaoREST {
 	
-	private static final String URL_WS = "http://10.0.103.97:8080/ServicoVendedores/avaliacao/";
+	private static final String URL_WS = "http://192.168.0.118:8080/ServicoVendedores/avaliacao/";
 	
 	public String avaliar(Avaliacao avaliacao){
 		JSONObject jo = new JSONObject();
