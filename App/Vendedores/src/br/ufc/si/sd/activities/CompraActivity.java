@@ -55,7 +55,7 @@ public class CompraActivity extends Activity{
 				if(avaliacaoResult != 0.0){
 					final Avaliacao avaliacao = new Avaliacao();
 					avaliacao.setAvaliacao(avaliacaoResult);
-					avaliacao.setAvaliadoId(usuario.getId());
+					avaliacao.setAvaliadoId(usuarioVendedor.getId());
 					avaliacao.setProdutoId(produto.getId());
 					avaliacao.setAvaliadorId(usuario.getId());
 					new AvaliarAsyncTask().execute(avaliacao);
