@@ -8,9 +8,11 @@
         android:id="@+id/textView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="#b31a1a"
         android:text="Cadastrar Produto"
-        android:textSize="30dp"
+        android:textSize="30sp"
         android:gravity="center"
         android:layout_gravity="center_vertical" />
 
@@ -52,29 +54,39 @@
 	   android:id="@+id/linear_fotos_cad"
 	   android:layout_width="match_parent"
 	   android:layout_height="wrap_content"
+	   android:padding="10dp"
+	   android:gravity="center"
 	   android:orientation="horizontal">
 	   
-    	<Button 
-	        android:id="@+id/btn_tirar_foto"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Tirar Foto"
-        />
-    	<Button 
-	        android:id="@+id/btn_ver_foto"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:text="Ver Foto"
-        />
+    	<Button
+    	    android:id="@+id/btn_tirar_foto"
+    	    android:layout_width="130dp"
+    	    android:layout_height="wrap_content"
+    	    android:layout_gravity="center"
+    	    android:background="@drawable/bordas_arredondadas_vermelho"
+    	    android:textColor="#ffffff"
+	   		android:text="Tirar Foto" />
+
+    	<Button
+    	    android:id="@+id/btn_ver_foto"
+    	    android:layout_width="130dp"
+    	    android:layout_height="wrap_content"
+    	    android:layout_gravity="center"
+    	    android:layout_marginLeft="20dp"
+    	    android:background="@drawable/bordas_arredondadas_vermelho"
+    	    android:textColor="#ffffff"
+    	    android:text="Ver Foto" />
+
 	</LinearLayout>
     
     <Button
         android:id="@+id/btn_cadastrar_produto"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
         android:layout_marginTop="10dp"
-        android:layout_gravity="bottom"
-        android:text="Cadastrar Produto" />
-    
+        android:background="@drawable/bordas_arredondadas_vermelho"
+        android:text="Cadastrar Produto"
+        android:textColor="#ffffff" />
     
 </LinearLayout>
