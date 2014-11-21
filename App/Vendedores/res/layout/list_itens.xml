@@ -10,9 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text=""
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/textView2"
@@ -20,12 +18,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text=""
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textSize="18sp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_gravity="center|center_vertical"
@@ -33,14 +29,19 @@
 
         <Button
             android:id="@+id/btn_editar_lista"
-            android:layout_width="158dp"
+            android:layout_width="120dp"
+            android:background="@drawable/bordas_arredondadas_vermelho"
+            android:textColor="#ffffff"
             android:layout_height="wrap_content"
             android:text="Editar" />
 
         <Button
             android:id="@+id/btn_excluir_lista"
-            android:layout_width="158dp"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:background="@drawable/bordas_arredondadas_vermelho"
+            android:textColor="#ffffff"
+            android:layout_marginLeft="10dp"
             android:text="Excluir" />
         
     </LinearLayout>

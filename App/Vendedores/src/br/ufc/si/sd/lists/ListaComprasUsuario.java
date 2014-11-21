@@ -36,6 +36,7 @@ public class ListaComprasUsuario extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.list_compras_usuario);
 		usuario = (Usuario) getIntent().getExtras().get("usuario");
 		new DownloadJsonComprasAsyncTask().execute(usuario);
 	}
