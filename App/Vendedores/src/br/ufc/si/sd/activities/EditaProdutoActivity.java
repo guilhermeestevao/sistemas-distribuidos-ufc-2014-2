@@ -45,7 +45,7 @@ public class EditaProdutoActivity extends Activity{
 		editQtdProduto.setText(String.valueOf(produto.getQuantidade()));
 		Button btnTirarFoto = (Button) findViewById(R.id.btn_tirar_foto);
 		Button btnVerFoto = (Button) findViewById(R.id.btn_ver_foto);
-		Button btnAtualizar = (Button) findViewById(R.id.btn_atuaalizar_produto);
+		Button btnAtualizar = (Button) findViewById(R.id.btn_atualizar_produto);
 		
 		btnTirarFoto.setOnClickListener(new OnClickListener() {
 			

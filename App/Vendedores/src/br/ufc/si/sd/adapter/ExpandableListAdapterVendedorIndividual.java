@@ -34,7 +34,8 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 	private LayoutInflater inflater;
 	private Activity activity;
 	private Usuario usuarioPrincipal;
-
+	private Usuario usuarioVendedor;
+	
 	public ExpandableListAdapterVendedorIndividual(List<Produto> produtos, Activity activity, Usuario usuarioPrincipal) {
 		this.produtos = produtos;
 		this.activity = activity;
@@ -133,14 +134,14 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 					builder.setCancelable(false);
 					builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							final Usuario usuario = (Usuario) activity.getIntent().getExtras().get("usuario");
+							usuarioVendedor = (Usuario) activity.getIntent().getExtras().get("usuario");
 							int quantidade = picker.getValue();
 							double valor = quantidade*produto.getPreco();
 							final Compra compra = new Compra();
 							compra.setIdComprador(usuarioPrincipal.getId());
 							compra.setIdProduto(produto.getId());
 							compra.setQuantidadeProduto(quantidade);
-							compra.setIdVendedor(usuario.getId());
+							compra.setIdVendedor(usuarioVendedor.getId());
 							compra.setValorVenda(valor);
 
 							new RealizarCompraAsyncTask().execute(compra);
@@ -155,7 +156,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 					builder.show();
 					
 				}else{
-					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Não esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
+					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Nï¿½o esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
 					builder.create().show();
 				}
 			}
@@ -173,7 +174,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 
 	class RealizarCompraAsyncTask extends AsyncTask<Compra, Void, String>{
 		
-		Usuario usuario;
+		Usuario usuario = usuarioVendedor;
 		ProgressDialog dialog;
 
 		@Override
@@ -185,8 +186,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 		@Override
 		protected String doInBackground(Compra... params) {
 			Compra compra = params[0];
-			usuario = new Usuario();
-			usuario.setId(compra.getIdVendedor());
+			
 			String resposta = new CompraREST().realizarCompra(compra);
 			return resposta;
 		}
@@ -196,7 +196,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 			super.onPostExecute(result);
 			dialog.dismiss();
 			AlertDialog.Builder builder = new AlertDialog.Builder(
-					activity).setTitle("Atenção").setMessage(result)
+					activity).setTitle("Atenï¿½ï¿½o").setMessage(result)
 					.setPositiveButton("OK", null);
 			
 			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -205,7 +205,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 				public void onClick(DialogInterface dialog, int which) {
 					
 					Intent it = new Intent(activity, ListaProdutosDoVendedorIndividual.class);
-					it.putExtra("usuario", usuario);
+					it.putExtra("usuario", usuarioVendedor);
 					it.putExtra("usuario_principal", usuario);
 					activity.startActivity(it);
 				}
