@@ -78,7 +78,7 @@ public class CurtirFacebook extends FragmentActivity{
 	        	objeto.setProperty("description", produto.getDescricao());
 	        	objeto.setProperty("image", "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/128/sale-icon.png");
 	        	
-	        	objeto.setProperty("url", "https://play.google.com/store/apps/details?id=com.app.applucianokikao");
+	        	objeto.setProperty("url", "http://vendedores.zz.mu/");
 	        	
 				OpenGraphAction action = GraphObject.Factory.create(OpenGraphAction.class);
 				action.setType("og.likes");
@@ -116,7 +116,7 @@ public class CurtirFacebook extends FragmentActivity{
 		        	objeto.setProperty("description", produto.getDescricao());
 		        	objeto.setProperty("image", "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/128/sale-icon.png");
 		        		
-		        	objeto.setProperty("url", "https://play.google.com/store/apps/details?id=com.app.applucianokikao");
+		        	objeto.setProperty("url", "http://vendedores.zz.mu/");
 		        	
 					OpenGraphAction action = GraphObject.Factory.create(OpenGraphAction.class);
 					action.setType("og.likes");
