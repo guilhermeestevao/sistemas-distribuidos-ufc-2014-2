@@ -3,24 +3,36 @@ package br.ufc.si.sd.adapter;
 import java.util.List;
 
 
+
+
+
+
+
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.sax.StartElementListener;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import br.ufc.si.sd.R;
+import br.ufc.si.sd.activities.ActivityVerFoto;
 import br.ufc.si.sd.activities.CurtirFacebook;
 import br.ufc.si.sd.entidades.Compra;
 import br.ufc.si.sd.entidades.Produto;
@@ -79,6 +91,12 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 		return false;
 	}
 
+	
+	private Bitmap converterToBitmap(byte[] bytesFoto){
+		Bitmap bitNew = BitmapFactory.decodeByteArray(bytesFoto, 0, bytesFoto.length);
+		return bitNew;
+	}
+	
 	@Override
 	public View getGroupView(int groupPosition, boolean isExpanded,
 			View convertView, ViewGroup parent) {
@@ -101,7 +119,20 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 		t1.setText(produto.getDescricao());
 		TextView t2 = (TextView) convertView.findViewById(R.id.tv_preco_produto_vendedor_individual);
 		t2.setText("Preco: "+String.valueOf(produto.getPreco()));
-
+		final byte[] imagem = produto.getFoto();
+		final ImageView img = (ImageView) convertView.findViewById(R.id.img_foto_produto_vendedor);
+		
+		img.setImageBitmap(converterToBitmap(imagem));
+		
+		img.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent it = new Intent(activity, ActivityVerFoto.class);
+				it.putExtra("imagem", imagem);
+				activity.startActivity(it);
+			}
+		});
+		
 		Button btnComprar = (Button) convertView.findViewById(R.id.comprar);
 		
 		ImageButton btnCurtir = (ImageButton) convertView.findViewById(R.id.bt_curtir);
