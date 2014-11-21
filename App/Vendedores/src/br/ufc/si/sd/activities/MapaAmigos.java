@@ -24,6 +24,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -37,6 +38,7 @@ public class MapaAmigos extends Activity{
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	public static List<GraphUser> listaAmigosFacebook = new ArrayList<GraphUser>();
 	private Usuario usuarioPrincipal;
+	private double valorAvaliacao;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,9 +95,10 @@ public class MapaAmigos extends Activity{
 				@Override
 				public View getInfoContents(Marker marker) {
 					// TODO Auto-generated method stub
-					//long id = getLocalTitle(marker.getTitle());
-
-					//new ObterAvaliacaoAsyncTask().execute(id);
+					
+					long id = getLocalTitle(marker.getTitle());
+					
+					new ObterAvaliacaoAsyncTask().execute(id);
 					
 					LinearLayout ll = new LinearLayout(MapaAmigos.this);
 					ll.setOrientation(LinearLayout.VERTICAL);
@@ -115,7 +118,7 @@ public class MapaAmigos extends Activity{
 					
 					RatingBar rb = new RatingBar(MapaAmigos.this);
 					rb.setNumStars(5);
-					//rb.setRating((float) cursor.getDouble(0));
+					rb.setRating((float) valorAvaliacao);
 					ll.addView(rb);
 					
 					return ll;
@@ -221,8 +224,8 @@ public class MapaAmigos extends Activity{
 		@Override
 		protected Double doInBackground(Long... params) {
 			long id = params[0];
-			double avaliacao = new AvaliacaoREST().obterAvaliacao(id);
-			return avaliacao;
+			valorAvaliacao = new AvaliacaoREST().obterAvaliacao(id);
+			return valorAvaliacao;
 		}
 		
 		@Override
