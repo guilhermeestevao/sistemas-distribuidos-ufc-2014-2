@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import br.ufc.si.sd.R;
+import br.ufc.si.sd.entidades.Produto;
 
 import com.facebook.Session;
 import com.facebook.SessionState;
@@ -21,6 +22,7 @@ public class CurtirFacebook extends FragmentActivity{
 
 	private UiLifecycleHelper uiHelper;
 	private TextView estado;
+	private Produto produto;
 	
 	private Session.StatusCallback callback = new Session.StatusCallback() {
         @Override
@@ -52,6 +54,8 @@ public class CurtirFacebook extends FragmentActivity{
 		
 		setContentView(R.layout.testeface);
 		
+		Bundle extras = getIntent().getExtras();
+		produto = (Produto) extras.getSerializable("produto");
 		estado = (TextView) findViewById(R.id.txt_status_face);
         
 	}
@@ -69,11 +73,10 @@ public class CurtirFacebook extends FragmentActivity{
 	        if(hasPublishPermission()){
 	        	
 	        	OpenGraphObject objeto = OpenGraphObject.Factory.createForPost("object");
-	        	objeto.setProperty("title", "Iphone");
+	        	objeto.setProperty("title", produto.getNome());
 	        
-	        	objeto.setProperty("description", "Testando descrição do produto");
-	        	objeto.setProperty("image", "http://www.lucianokikao.com.br/imagens/galeria/52d77ed47e15a1389854420.jpg");
-	        	
+	        	objeto.setProperty("description", produto.getDescricao());
+	        	objeto.setProperty("image", "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/128/sale-icon.png");
 	        	
 	        	objeto.setProperty("url", "https://play.google.com/store/apps/details?id=com.app.applucianokikao");
 	        	
@@ -108,10 +111,10 @@ public class CurtirFacebook extends FragmentActivity{
 	    		if(hasPublishPermission()){
 		        	
 		        	OpenGraphObject objeto = OpenGraphObject.Factory.createForPost("object");
-		        	objeto.setProperty("title", "Iphone");
+		        	objeto.setProperty("title", produto.getNome());
 		        
-		        	objeto.setProperty("description", "Testando descrição do produto");
-		        	objeto.setProperty("image", "http://www.lucianokikao.com.br/imagens/galeria/52d77ed47e15a1389854420.jpg");
+		        	objeto.setProperty("description", produto.getDescricao());
+		        	objeto.setProperty("image", "http://icons.iconarchive.com/icons/custom-icon-design/pretty-office-11/128/sale-icon.png");
 		        		
 		        	objeto.setProperty("url", "https://play.google.com/store/apps/details?id=com.app.applucianokikao");
 		        	
