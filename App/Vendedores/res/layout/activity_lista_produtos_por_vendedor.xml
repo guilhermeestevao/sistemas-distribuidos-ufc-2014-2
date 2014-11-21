@@ -3,13 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
-
+	
+    <TextView
+        android:id="@+id/tvProdutosDoUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="#b31a1a"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_gravity="center_vertical" />
+    
     <ExpandableListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" >
+        android:layout_below="@+id/tvProdutosDoUsuario" >
     </ExpandableListView>
 
 </RelativeLayout>
