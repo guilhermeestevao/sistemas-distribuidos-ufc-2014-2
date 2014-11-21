@@ -2,9 +2,12 @@ package br.ufc.si.sd.rest;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import android.util.Base64;
 import android.util.Log;
 import br.ufc.si.sd.entidades.Produto;
 import br.ufc.si.sd.entidades.Usuario;
@@ -23,8 +26,10 @@ public class ProdutoREST {
 			jo.put("quantidade", produto.getQuantidade());
 			jo.put("preco", produto.getPreco());
 			jo.put("usuarioId", produto.getUsuarioId());
-			jo.put("foto", String.valueOf(produto.getFoto()));
+			String imgArray = Base64.encodeToString(produto.getFoto(), Base64.DEFAULT);
+			jo.put("foto", imgArray);
 			String produtoJson = jo.toString();
+			Log.i("script", produtoJson);
 			String[] respostaServidor = new WebServiceCliente().post(URL_WS+"novo", produtoJson);
 			return respostaServidor[1];
 		} catch (JSONException e) {
@@ -59,6 +64,7 @@ public class ProdutoREST {
 			jo.put("quantidade", produto.getQuantidade());
 			jo.put("preco", produto.getPreco());
 			jo.put("usuarioId", produto.getUsuarioId());
+			
 			//jo.put("foto", String.valueOf(produto.getFoto()));
 			String produtoJson = jo.toString();
 			String[] respostaServidor = new WebServiceCliente().put(URL_WS+"atualizar", produtoJson);
@@ -83,7 +89,9 @@ public class ProdutoREST {
 			produtoAux.setPreco(Double.parseDouble(produto.getString("preco")));
 			produtoAux.setQuantidade(Integer.parseInt(produto.getString("quantidade")));
 			produtoAux.setUsuarioId(Long.parseLong(produto.getString("usuarioId")));
-			//produtoAux.setFoto(produto.getString("foto").getBytes());
+			String imgBytes = produto.getString("foto");
+			byte[] imgRecebida = Base64.decode(imgBytes, Base64.DEFAULT);
+			produtoAux.setFoto(imgRecebida);
 			return produtoAux;
 		} catch (JSONException e) {
 			Log.i("JSON PRODUTO", e.getMessage());
@@ -110,6 +118,9 @@ public class ProdutoREST {
 				produtoAux.setDescricao(produto.getString("descricao"));
 				produtoAux.setPreco(Double.parseDouble(produto.getString("preco")));
 				produtoAux.setQuantidade(Integer.parseInt(produto.getString("quantidade")));
+				String imgBytes = produto.getString("foto");
+				byte[] imgRecebida = Base64.decode(imgBytes, Base64.DEFAULT);
+				produtoAux.setFoto(imgRecebida);
 				produtos.add(produtoAux);
 			}
 			
@@ -124,6 +135,9 @@ public class ProdutoREST {
 				produtoAux.setPreco(Double.parseDouble(produto.getString("preco")));
 				produtoAux.setQuantidade(Integer.parseInt(produto.getString("quantidade")));
 				produtoAux.setUsuarioId(Long.parseLong(produto.getString("usuarioId")));
+				String imgBytes = produto.getString("foto");
+				byte[] imgRecebida = Base64.decode(imgBytes, Base64.DEFAULT);
+				produtoAux.setFoto(imgRecebida);
 				produtos.add(produtoAux);
 				
 			} catch (JSONException e1) {
