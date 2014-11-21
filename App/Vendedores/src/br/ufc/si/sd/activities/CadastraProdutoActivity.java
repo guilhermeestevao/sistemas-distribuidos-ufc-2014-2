@@ -73,8 +73,7 @@ public class CadastraProdutoActivity extends Activity {
 							String descricao = editDescricaoProduto.getText().toString();
 							double preco = Double.parseDouble(editPrecoProduto.getText().toString());
 							int quantidade = Integer.parseInt(editQtdProduto.getText().toString());
-							long idUsuario = usuario.getId();
-
+							long idUsuario = usuario.getId();						
 							Produto produto = new Produto(nome, descricao, quantidade, preco, idUsuario);
 							if(imagem != null){
 								produto.setFoto(convertBitMap(imagem));

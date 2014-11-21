@@ -50,7 +50,7 @@ public class CompraActivity extends Activity{
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				
 				float avaliacaoResult = nota.getRating(); 
 				if(avaliacaoResult != 0.0){
 					final Avaliacao avaliacao = new Avaliacao();
