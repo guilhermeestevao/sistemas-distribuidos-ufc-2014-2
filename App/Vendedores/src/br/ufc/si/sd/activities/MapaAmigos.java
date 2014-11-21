@@ -38,9 +38,7 @@ public class MapaAmigos extends Activity{
 	private List<Usuario> usuarios = new ArrayList<Usuario>();
 	public static List<GraphUser> listaAmigosFacebook = new ArrayList<GraphUser>();
 	private Usuario usuarioPrincipal;
-
 	private double valorAvaliacao;
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +84,8 @@ public class MapaAmigos extends Activity{
 			
 			googleMap.setInfoWindowAdapter(new InfoWindowAdapter() {
 				
+				
+				
 				@Override
 				public View getInfoWindow(Marker arg0) {
 					// TODO Auto-generated method stub
@@ -95,12 +95,10 @@ public class MapaAmigos extends Activity{
 				@Override
 				public View getInfoContents(Marker marker) {
 					// TODO Auto-generated method stub
-
 					
 					long id = getLocalTitle(marker.getTitle());
 					
 					new ObterAvaliacaoAsyncTask().execute(id);
-
 					
 					LinearLayout ll = new LinearLayout(MapaAmigos.this);
 					ll.setOrientation(LinearLayout.VERTICAL);
@@ -119,7 +117,7 @@ public class MapaAmigos extends Activity{
 					
 					
 					RatingBar rb = new RatingBar(MapaAmigos.this);
-					
+					rb.setNumStars(5);
 					rb.setRating((float) valorAvaliacao);
 					ll.addView(rb);
 					
@@ -234,7 +232,6 @@ public class MapaAmigos extends Activity{
 		protected void onPostExecute(Double result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
-			Toast.makeText(MapaAmigos.this, String.valueOf(result), Toast.LENGTH_LONG).show();
 		}
 		
 	}
