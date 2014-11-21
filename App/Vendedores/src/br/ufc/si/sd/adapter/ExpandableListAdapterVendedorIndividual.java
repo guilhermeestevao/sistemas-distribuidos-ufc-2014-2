@@ -110,6 +110,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 			@Override
 			public void onClick(View arg0) {
 				Intent intent = new Intent(activity, CurtirFacebook.class);
+				intent.putExtra("produto", produto);
 				activity.startActivity(intent);
 			}
 		});
