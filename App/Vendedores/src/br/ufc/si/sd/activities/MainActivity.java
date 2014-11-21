@@ -88,6 +88,11 @@ public class MainActivity extends Activity {
 			it4.putExtra("usuario", usuario);
 			startActivity(it4);
 			break;
+		case R.id.convidar_amigos:
+			Intent it5 = new Intent(MainActivity.this, ActivityConvidarAmigos.class);
+			it5.putExtra("usuario", usuario);
+			startActivity(it5);
+			break;
 		default:
 			break;
 			
