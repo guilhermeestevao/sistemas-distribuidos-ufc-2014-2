@@ -64,7 +64,8 @@ public class ProdutoREST {
 			jo.put("quantidade", produto.getQuantidade());
 			jo.put("preco", produto.getPreco());
 			jo.put("usuarioId", produto.getUsuarioId());
-			
+			String imgArray = Base64.encodeToString(produto.getFoto(), Base64.DEFAULT);
+			jo.put("foto", imgArray);
 			//jo.put("foto", String.valueOf(produto.getFoto()));
 			String produtoJson = jo.toString();
 			String[] respostaServidor = new WebServiceCliente().put(URL_WS+"atualizar", produtoJson);
