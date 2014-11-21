@@ -40,9 +40,9 @@ public class CompraActivity extends Activity{
 		
 		nome.setText(produto.getNome());
 		descricao.setText(produto.getDescricao());
-		vendedor.setText(usuarioVendedor.getNome());
-		quantidade.setText(String.valueOf(compra.getQuantidadeProduto()));
-		preco.setText(String.valueOf(compra.getValorVenda()));
+		vendedor.setText("Vendedor: "+usuarioVendedor.getNome());
+		quantidade.setText("Quantidade comprada: "+String.valueOf(compra.getQuantidadeProduto()));
+		preco.setText("Preço total: "+String.valueOf(compra.getValorVenda()));
 		
 		Button avaliar = (Button) findViewById(R.id.avaliar_produto);
 		
