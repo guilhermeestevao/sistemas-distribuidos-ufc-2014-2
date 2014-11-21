@@ -23,5 +23,9 @@
 	<item android:id="@+id/teste"
         android:title="Teste"
         android:showAsAction="never"/>
+	
+	<item android:id="@+id/convidar_amigos"
+        android:title="Convidar amigos Facebook"
+        android:showAsAction="never"/>
 	 
 </menu>
