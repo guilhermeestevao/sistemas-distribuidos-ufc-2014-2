@@ -2,6 +2,7 @@ package br.ufc.si.sd.lists;
 
 import java.util.List;
 
+import br.ufc.si.sd.R;
 import br.ufc.si.sd.entidades.Compra;
 import br.ufc.si.sd.entidades.Produto;
 import br.ufc.si.sd.entidades.Usuario;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class ListaVendasUsuario extends ListActivity{
 
@@ -28,6 +30,7 @@ public class ListaVendasUsuario extends ListActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+		setContentView(R.layout.list_vendas_usuario);
 		Usuario usuario = (Usuario) getIntent().getExtras().get("usuario");
 		new DownloadJasonVendasAsyncTask().execute(usuario);
 	}

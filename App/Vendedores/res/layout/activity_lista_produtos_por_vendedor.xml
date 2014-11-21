@@ -13,6 +13,7 @@
         android:background="#b31a1a"
         android:textSize="20sp"
         android:gravity="center"
+        android:text="Meus Produtos"
         android:layout_gravity="center_vertical" />
     
     <ExpandableListView

@@ -86,7 +86,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		if(convertView == null)
 			convertView = inflater.inflate(R.layout.list_itens, null);
 		TextView t1 = (TextView) convertView.findViewById(R.id.textView1);
-		t1.setText("Descricao: "+children.getDescricao());
+		t1.setText(children.getDescricao());
 		TextView t2 = (TextView) convertView.findViewById(R.id.textView2);
 		t2.setText("Preco: "+String.valueOf(children.getPreco()));
 		
