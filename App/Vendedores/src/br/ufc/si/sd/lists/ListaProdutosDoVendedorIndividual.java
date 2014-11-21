@@ -18,6 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 public class ListaProdutosDoVendedorIndividual extends Activity {
 
@@ -34,6 +35,10 @@ public class ListaProdutosDoVendedorIndividual extends Activity {
 		Intent it = getIntent();
 		usuario = (Usuario) it.getExtras().get("usuario");
 		usuarioPrincipal = (Usuario) it.getExtras().get("usuario_principal");
+		
+		TextView tvNomeVendedor = (TextView) findViewById(R.id.tvProdutosDoVendedor);
+		tvNomeVendedor.setText("Produtos de "+usuario.getNome());
+		
 		new DownloadJsonAsyncTask().execute();
 	}
 	

@@ -97,7 +97,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 		if(convertView == null)
 			convertView = inflater.inflate(R.layout.list_itens_produtos_vendedor_individual, null);
 		TextView t1 = (TextView) convertView.findViewById(R.id.tv_descricao_produto_vendedor_individual);
-		t1.setText("Descricao: "+produto.getDescricao());
+		t1.setText(produto.getDescricao());
 		TextView t2 = (TextView) convertView.findViewById(R.id.tv_preco_produto_vendedor_individual);
 		t2.setText("Preco: "+String.valueOf(produto.getPreco()));
 
@@ -141,7 +141,6 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 							compra.setIdProduto(produto.getId());
 							compra.setQuantidadeProduto(quantidade);
 							compra.setIdVendedor(usuario.getId());
-							Log.i("JSON PRODUTO", "id: "+compra.getIdVendedor());
 							compra.setValorVenda(valor);
 
 							new RealizarCompraAsyncTask().execute(compra);
@@ -156,7 +155,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 					builder.show();
 					
 				}else{
-					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Nï¿½o esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
+					AlertDialog.Builder builder = new AlertDialog.Builder(activity).setTitle("Atencao") .setMessage("Não esta disponivel para venda. Quantidade = 0 ") .setPositiveButton("OK", null); 
 					builder.create().show();
 				}
 			}
@@ -197,7 +196,7 @@ public class ExpandableListAdapterVendedorIndividual extends BaseExpandableListA
 			super.onPostExecute(result);
 			dialog.dismiss();
 			AlertDialog.Builder builder = new AlertDialog.Builder(
-					activity).setTitle("AtenÃ§Ã£o").setMessage(result)
+					activity).setTitle("Atenção").setMessage(result)
 					.setPositiveButton("OK", null);
 			
 			builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
